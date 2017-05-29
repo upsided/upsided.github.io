@@ -19,8 +19,8 @@ body {
     font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
     font-size: 13px;
     line-height: 18px;
-    color: #737373;
-    background-color: white;
+    color: #aaa;
+    background-color: #282c37 ;
     margin: 10px 13px 10px 13px;
 }
 table {
@@ -36,10 +36,11 @@ th {
 }
 
 a {
-    color: #0069d6;
+    color: #8089a4;
+    text-decoration: none;
 }
 a:hover {
-    color: #0050a3;
+    color: #fff;
     text-decoration: none;
 }
 a img {
@@ -54,7 +55,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: #404040;
+    color: #ddd;
     line-height: 36px;
 }
 h1 {
@@ -86,13 +87,16 @@ hr {
 .instance-chunk {
     padding: 26px;
     margin-bottom: 30px;
-    box-shadow: 2px 2px 4px 2px #888888;
+    box-shadow: 0px 0px 100px -10px #888888;
+    background-color: #21242b;
+    border-radius: 16px;
 }
 
 .instance-left {
     float: left;
     width: 131px;
     min-height: 200px;
+
 }
 
 .instance-right {
@@ -105,17 +109,14 @@ hr {
 .instance-head {
     font-size: 24px;
     padding-top: 0px;
+
 }
-h4.instance-head{
+h4.instance-head {
     font-size:12px;
     padding-top: 0px;
     text-align: right;
 }
 
-h4.instance-head a:link {
-    text-decoration: none;
-    color: black;
-}
 .instance-clicks {
     font-size: 18px;
     text-align: right;
@@ -123,6 +124,7 @@ h4.instance-head a:link {
 }
 
 .description-head {
+    
 }
 
 .description-body {
@@ -136,7 +138,8 @@ h4.instance-head a:link {
 }
 .stats {
     padding-bottom: 10px;
-    font-weight: bold;
+    font-weight: normal;
+    color: #777
 }
 
 div.toot-group {
@@ -146,6 +149,7 @@ div.toot {
 div.avvi-wall{
 max-width: 155px;
 float:left;
+
 }
 
 div.toot-disclosure{
@@ -245,6 +249,7 @@ sup {
 }
 
 
+
 .ui-widget {
   background-color: #fff;
   font-family: sans-serif;
@@ -283,14 +288,15 @@ input[type=checkbox] {
   border: solid;
   border-color: #eee;
   border-radius: 10px;
+  color: #222;
 }
 .ui-dialog-content{
   background: #fff;
   padding: 10px
 }
 .ui-dialog-titlebar {
-  background-color: #eee;
   padding: 10px 5px 10px 0px;
+  border-radius: 10px;
 }
 .ui-dialog-title {
   padding: 10px;
@@ -299,6 +305,7 @@ input[type=checkbox] {
   float: right;
   border: none;
   background: none;
+  color: #222
   
 }
 input[type=checkbox] {
@@ -312,10 +319,12 @@ h4.dialog-head{
   padding: 0px;
   margin-bottom: -10px;
   font-size: 13px;
+  color: #444;
 }
 .ui-dialog {
     position: fixed !important;
     padding-bottom: 8px;
+    box-shadow: 0px 0px 30px 0px #000;
 }
 
 #applyfilter-button {
@@ -325,6 +334,9 @@ h4.dialog-head{
 
 div.page-description {
     padding-bottom: 20px;
+}
+#searchBox {
+    float: right;
 }
   </style>
   <title>
@@ -342,26 +354,52 @@ div.page-description {
             $(this).hide().show();
         });
         
-    // hide everything
+    // show everything
     $(".instance-chunk").show();
-    $(".radio-entry *").each(
+    var selectorBuild ="#junk_nada_id_for_code_clarity";
+    $(".radio-entry *, #languageFilters *").each(
             function (index) {
                 if (!$(this).is(":checked")){
                     var id = $(this).get(0).id
                     if (id){
-                        var s = "." + id
+                        selectorBuild = selectorBuild +  ", ." + id
                         //alert("THIS IS CHECKED: " + s)
-                        $(s).hide()
+                        //$(s).hide()
                     }
                 }                                   
             }
         );  
+    //console.log(selectorBuild)
+    
+    $(selectorBuild).hide();
+    var sBox = document.getElementById("searchBox");
+    var searchTerms = []
+    
+    if (sBox == null) {console.log("NULL SEARCH BOX");}
+    else {
+      searchTerms = sBox.value.toLowerCase().split(" ")
+    }
+            
+    $(".instance-chunk").filter(function () {
+        var found = 0;
+        var s = $(this).text().toLowerCase();
+        
+        for (var i in searchTerms ){
+          if (s.match(searchTerms[i])){
+            found++;
+          }
+        }
 
-    $("#languageFilters").find('*').each(
+        if (found!=searchTerms.length) {
+          $(this).hide();
+        }
+      });
+    
+    $("#languageFasdfilters").find('*').each(
             function (index) {
                 if (!$(this).is(":checked"))
                     var id = $(this).get(0).id
-                    
+                    selectorBuild = selectorBuild +  ", ." + id                    
                     if (id){
                         var s = "." + id
                         //alert("THIS IS NOT CHECKED: " + s)
@@ -398,8 +436,14 @@ $(document).ready(function() {
         
     $("#applyfilter-button").on("click", function() {
         //alert(thing.id);  
-        refilter();      
+        refilter();
         } );
+    $('#searchBox').keypress(function (e) {
+       var key = e.which;
+       if(key == 13) { refilter(); }
+       return true;
+     })
+
   } );
   </script>
  </head>
@@ -408,7 +452,7 @@ $(document).ready(function() {
    Described Instances List
   </h1>
   <h4>
-   Sun May 28 13:49:05 2017
+   Sun May 28 23:08:56 2017
   </h4>
   <div class="page-description">
    <p>
@@ -430,6 +474,7 @@ $(document).ready(function() {
    </p>
   </div>
   <div id="filter-dialog" style="display: none" title="Instance Filter">
+   <input class="ui-button ui-widget ui-corner-all" id="searchBox" name="searchBox" type="text" value=""/>
    <p id="filtercount">
    </p>
    <div id="languageFilters">
