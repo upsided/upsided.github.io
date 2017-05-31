@@ -142,7 +142,7 @@ function setTootText(toots, theDomain) {
     $("#tootcontent").animate({'font-size':'0px'})
     
     setTimeout(function() {
-        tootDiv.innerHTML = toots[picked].content + "<b>" + picked + " " + toots.length + "</b>"
+        tootDiv.innerHTML = toots[picked].content
         titleDiv.innerHTML = '<a href="https://' + theDomain + '/about/more">' + theDomain + "</a>";
         }, 800
     );
