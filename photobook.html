@@ -73,16 +73,31 @@ hr {
     border-bottom: 1px solid #ccc;
 }
 h1 {
-    text-align: center; 
+    text-align: left; 
     margin-top:0px;
-    padding-bottom: 1vh;
+    margin-bottom: 0px;
+    font-size: 4vh;
+    width: 100vw;
+    background-color: black;
 }
+.smaller {
+    font-size: 2.5vh;
+}
+
 h2 {
     text-align: center; 
-    font-size: 6vw;
-    margin-top:1vw;
-      padding-bottom: 1vw;
+    font-size: 2vw;
+    margin-top:10px;
+    padding-bottom: 1vw;
 }
+h4 {
+    margin-top: 0px;
+    padding-top: 0px;
+    font-size: 3vh;
+    text-align: center;
+    color: #778;
+}
+
 #thebox {
   background-color: grey;
   width: 50px;
@@ -96,20 +111,24 @@ h2 {
 #domainname {
 }
 #spacer {
-    height:2vh;
+    height:3vh;
 }
 #theimage{
   margin: 0 auto 0 auto;
 }
 #tootcontent{
   margin: 0 auto 0 auto;
+  padding-top:2vh;
+  padding-bottom:1vh;
 }
 .warning {
-    color: #ddd;
+    color: #aaa;
 }
 p {
-    font-size: 1.5vw;
+    margin: 0.1vh;
+    font-size: 2vh;
 }
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js">
@@ -198,7 +217,7 @@ function setTootText(toots, theDomain) {
         $("#tootcontent").show();
         $("#thebox").animate({'width':'66%', 'max-height':'100%'  })
         $("#theimage").animate({'width':picWidth, 'height':picHeight })
-        $("#domainname").animate({'font-size':'4vw'})
+        $("#domainname").animate({'font-size':'2.5vw'})
         $("#tootcontent").animate({'font-size':'2vw', 'width':'100%', 'height': '100%'})
         }, 1600
     );
@@ -247,7 +266,8 @@ $(document).ready(function() {
 <body>
 <div id="spacer"></div>
 <h1>Photos From <a href="https://joinmastodon.org">The Fediverse</a></h1>
-<p style="text-align: center"><span class="warning">may contain offensive content</span></p>
+<p style="text-align: left">Click stuff to join.<span class="warning"> May contain offensive content</span></p>
 <div id="spacer"></div>
 
-<div id="thebox"> <h2 id="domainname"></h2><div id="tootcontent"><p style="text-align: center;"><img id="theimage" src=""></img></p></div></div>
+<div id="thebox"> <div id="tootcontent"><p style="text-align: center;"><img id="theimage" src=""></img></p></div>
+<h2 id="domainname"></h2></div>
