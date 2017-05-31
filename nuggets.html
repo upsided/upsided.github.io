@@ -117,17 +117,32 @@ function pickDomain() {
 function setTootText(toots, theDomain) {
     var tootDiv = document.getElementById("tootcontent");
     var titleDiv = document.getElementById("domainname");
+
     //console.log(toots[0].content)
     if (toots == undefined || toots.length ==0 || toots[0].content==undefined || toots[0].content.length == 0) {
         return;
     }
+
+    // skip over CW posts
+    var picked =  undefined; 
+    var tries = 5;
+    while (tries > 0) {
+        picked = Math.floor(Math.random()*toots.length);
+        if (toots[picked].spoiler_text.length > 0){
+            tries--;
+            continue;
+        }
+        break;
+    }
+    
+    if (tries < 0) return;
     
     $("#thebox").animate({'width':'0%', 'height':'0%'  })
     $("#domainname").animate({'font-size':'0px'})
     $("#tootcontent").animate({'font-size':'0px'})
     
     setTimeout(function() {
-        tootDiv.innerHTML = toots[Math.floor(Math.random()*toots.length)].content
+        tootDiv.innerHTML = toots[picked].content
         titleDiv.innerHTML = '<a href="https://' + theDomain + '/about/more">' + theDomain + "</a>";
         }, 800
     );
@@ -146,9 +161,9 @@ function setTootText(toots, theDomain) {
 function displayToots(domain) {
     var url = "https://" + domain + "/api/v1/timelines/public?local=1"
     var thisDomain = domain
-    console.log(thisDomain)
-    console.log("CACHED TOOTS", cachedToots[thisDomain])
-    console.log(cachedToots);
+    //console.log(thisDomain)
+    //console.log("CACHED TOOTS", cachedToots[thisDomain])
+    //console.log(cachedToots);
     
     if (cachedToots[thisDomain]!= undefined) {
         setTootText(cachedToots[thisDomain], thisDomain);
