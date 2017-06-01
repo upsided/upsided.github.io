@@ -74,14 +74,16 @@ hr {
 }
 h1 {
     text-align: center; 
-    margin-top:0px;
-      padding-bottom: 5vw;
+    padding-bottom: 5vw;
+    font-size: 4vw;
+    line-height: 4.5vw;
 }
 h2 {
     text-align: center; 
     font-size: 6vw;
+    line-height: 6.5vw;
     margin-top:1vw;
-      padding-bottom: 1vw;
+    padding-bottom: 1vw;
 }
 
 html,body {
@@ -96,18 +98,18 @@ background-color: #282c37;
     background-color: #282c37;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    position: fixed;
 }
 #thebox {
   background-color: grey;
   width: 50px;
   height: auto;
-  padding: 2vw;
+  padding: 3vw;
   background-color: #21242b;
   margin: 0 auto 0 auto;
   border-radius: 12px;  
   box-shadow: 0px 0px 100px -10px #888888;
+  overflow: hidden;
+
 }
 #domainname {
 }
@@ -167,8 +169,8 @@ function setTootText(toots, theDomain) {
     
     setTimeout(function () {
         $("#thebox").animate({'width':'66%', 'max-height': '100%', 'opacity':'1.0'  })
-        $("#domainname").animate({'font-size':'4vw', 'opacity':'1.0'})
-        $("#tootcontent").animate({'font-size':'2vw', 'height': '100%', 'max-height':'100%', 'opacity':'1.0'})
+        $("#domainname").animate({'font-size':'5vw', 'opacity':'1.0'})
+        $("#tootcontent").animate({'font-size':'3vw', 'height': '100%', 'max-height':'100%', 'opacity':'1.0'})
         }, 1600
     );
 
