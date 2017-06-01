@@ -184,7 +184,8 @@ function displayToots(domain) {
     //console.log(cachedToots);
     
     if (cachedToots[thisDomain]!= undefined) {
-        setTootText(cachedToots[thisDomain], thisDomain);
+        if (cachedToots[thisDomain].length > 0)
+            setTootText(cachedToots[thisDomain], thisDomain);
         return;
     }
     var request = new XMLHttpRequest();
@@ -195,6 +196,9 @@ function displayToots(domain) {
                 var toots = JSON.parse(request.responseText);
                 cachedToots[thisDomain] = toots
                 setTootText(toots, thisDomain);
+            }
+            else {
+                cachedToots[thisDomain] = []
             }
         }
     }
