@@ -83,10 +83,26 @@ h2 {
     margin-top:1vw;
       padding-bottom: 1vw;
 }
+
+html,body {
+background-color: #282c37;
+} 
+
+#controlbar, #TV {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+#everything {
+    background-color: #282c37;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+}
 #thebox {
   background-color: grey;
   width: 50px;
-  height: 50px;
+  height: auto;
   padding: 2vw;
   background-color: #21242b;
   margin: 0 auto 0 auto;
@@ -95,8 +111,8 @@ h2 {
 }
 #domainname {
 }
-#spacer {
-    height:26vh;
+.spacer {
+    height:9vh;
 }
 </style>
 
@@ -137,9 +153,9 @@ function setTootText(toots, theDomain) {
     
     if (tries == 0) return;
     
-    $("#thebox").animate({'width':'0%', 'height':'0%'  })
-    $("#domainname").animate({'font-size':'0px'})
-    $("#tootcontent").animate({'font-size':'0px'})
+    $("#thebox").animate({'width':'1%', 'opacity':'0.0'  })
+    $("#domainname").animate({'font-size':'1%', 'opacity':'0.0'})
+    $("#tootcontent").animate({'font-size':'1%', 'height':'1%', 'opacity':'0.0'})
     
     setTimeout(function() {
         tootDiv.innerHTML = toots[picked].content
@@ -150,9 +166,9 @@ function setTootText(toots, theDomain) {
 
     
     setTimeout(function () {
-        $("#thebox").animate({'width':'66%', 'max-height':'100%'  })
-        $("#domainname").animate({'font-size':'4vw'})
-        $("#tootcontent").animate({'font-size':'2vw'})
+        $("#thebox").animate({'width':'66%', 'max-height': '100%', 'opacity':'1.0'  })
+        $("#domainname").animate({'font-size':'4vw', 'opacity':'1.0'})
+        $("#tootcontent").animate({'font-size':'2vw', 'height': '100%', 'max-height':'100%', 'opacity':'1.0'})
         }, 1600
     );
 
@@ -191,6 +207,52 @@ function doToots() {
     setTimeout(doToots, 10000);
 }
 
+function isFullScreen()
+{
+    return (document.fullScreenElement && document.fullScreenElement !== null)
+         || document.mozFullScreen
+         || document.webkitIsFullScreen;
+}
+
+
+function requestFullScreen(element)
+{
+    if (element.requestFullscreen)
+        element.requestFullscreen();
+    else if (element.msRequestFullscreen)
+        element.msRequestFullscreen();
+    else if (element.mozRequestFullScreen)
+        element.mozRequestFullScreen();
+    else if (element.webkitRequestFullscreen)
+        element.webkitRequestFullscreen();
+}
+
+function exitFullScreen()
+{
+    if (document.exitFullscreen)
+        document.exitFullscreen();
+    else if (document.msExitFullscreen)
+        document.msExitFullscreen();
+    else if (document.mozCancelFullScreen)
+        document.mozCancelFullScreen();
+    else if (document.webkitExitFullscreen)
+        document.webkitExitFullscreen();
+}
+
+function toggleFullScreenCompat(element)
+{
+    if (isFullScreen())
+        exitFullScreen();
+    else
+        requestFullScreen(element || document.documentElement);
+}
+
+function toggleFullscreen() {
+    var elem = document.getElementById('everything');
+    toggleFullScreenCompat(elem)
+    //alert("fullscreen mode!")
+}
+
 $(document).ready(function() {
   doToots();
 });
@@ -198,6 +260,9 @@ $(document).ready(function() {
 <title>Nuggets From The Fediverse</title>
 </head>
 <body>
-<div id="spacer"></div>
+<div id="everything">
+<div id="controlbar"><a id="TV"  style="cursor: pointer;" onclick="toggleFullscreen();">📺</a></div><div class="spacer"></div>
 <h1>Nuggets From <a href="https://joinmastodon.org">The Fediverse</a></h1>
 <div id="thebox"> <h2 id="domainname"></h2><div id="tootcontent"></div></div>
+</div>
+</body>
