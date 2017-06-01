@@ -87,39 +87,49 @@ h1 {
 h2 {
     text-align: center; 
     font-size: 2vw;
-    margin-top:10px;
+    line-height: 2vw;
     padding-bottom: 1vw;
+    padding-top: 0px;
 }
 h4 {
     margin-top: 0px;
     padding-top: 0px;
     font-size: 3vh;
+    line-height: 3.5vh;
     text-align: center;
     color: #778;
 }
 
 #thebox {
-  background-color: grey;
+  background-color: none;
   width: 50px;
   height: 50px;
-  padding: 2vw;
-  background-color: #000;
+  padding: 1vh 1vw 1vh 1vw;
   margin: 0 auto 0 auto;
-  border-radius: 12px;  
-  box-shadow: 0px 0px 100px -10px #888888;
 }
 #domainname {
+    font-size: 1vw;
+    line-height: 1vw;
+     black;
 }
+#domainname a {color: #111;}
 #spacer {
     height:3vh;
 }
 #theimage{
-  margin: 0 auto 0 auto;
+  max-width: 60vw;
+  max-height: 60vw;
+  border: 50px solid;
+  border-color: black;
+  border-radius: 10px;
+  box-shadow: 0px 0px 100px -10px #888888;
+   
 }
 #tootcontent{
   margin: 0 auto 0 auto;
-  padding-top:2vh;
-  padding-bottom:1vh;
+  padding-top 0vh;
+  padding-bottom:0vh;
+  line-height: 1px;
 }
 .warning {
     color: #aaa;
@@ -128,7 +138,6 @@ p {
     margin: 0.1vh;
     font-size: 2vh;
 }
-
 </style>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js">
@@ -144,59 +153,52 @@ function pickDomain() {
     var index = Math.floor(Math.random()*instances.length);
     return instances[index];
 }
+function extractMedia(tootList) {
+    var media = []
+    for (t in tootList) {
+        if (tootList[t].sensitive == null || tootList[t].sensitive)
+            continue;
+        
+        if (tootList[t].media_attachments != undefined){
+            if (tootList[t].media_attachments.length > 0) {
+                for (var m in tootList[t].media_attachments) {
+                    media.push(tootList[t].media_attachments[m])
+                }
+            }
+        }
+    }
+    return media;
+}
 
-function setTootText(toots, theDomain) {
+function setTootText(media, theDomain) {
+    if (media.length == 0) return;
+
     var theimage = document.getElementById("theimage");
     var titleDiv = document.getElementById("domainname");
-    var tootContent = document.getElementById("tootcontent");
-    
-    //console.log(toots[0].content)
-    if (toots == undefined || toots.length ==0 || toots[0].content==undefined || toots[0].content.length == 0) {
-        return;
-    }
-
-    // skip over non-media posts and nsfw posts
-    var picked =  undefined; 
-    var tries = 5;
-    while (tries > 0) {
-        picked = Math.floor(Math.random()*toots.length);
-        if (toots[picked].media_attachments.length == 0){
-            tries--;
-            continue;
-        }
-        
-        if (toots[picked].sensitive == null){
-            tries--;
-            continue;
-        }
-
-        break;
-    }
-    
-    if (tries == 0) return;
-
+    var tootContent = document.getElementById("tootcontent");    
     var picWidth;
     var picHeight;
     var mediaPick;
     
-    mediaPick = toots[picked].media_attachments[Math.floor(Math.random() * toots[picked].media_attachments.length)];
+    mediaPick = media[Math.floor(Math.random() * media.length)];
     
     try{
-     picWidth = mediaPick.meta.small.width
+      picWidth = mediaPick.meta.small.width
       picHeight = mediaPick.meta.small.height
     }
     catch (err){
-        console.log(err);
-        console.log(toots[picked]);
-        console.log(mediaPick);
+        //console.log(err);
+        //console.log(media);
+        //console.log(mediaPick);
         picWidth = undefined;
         picHeight = undefined;
         //return; // no biggie, just skip
     }
 
-    $("#thebox, #theimage").animate({'width':'0%', 'height':'0%'  })
-    $("#domainname").animate({'font-size':'0px'})
+    $("#thebox").animate({'width':'0%', 'height':'0%', 'opacity': '0'  })
+    $("#domainname").animate({'font-size':'0px', 'opacity': '0'})
     $("#tootcontent").animate({'font-size':'0px', 'width':'0%', 'height': '0%'})
+    $("#theimage").animate({'max-width':'1vw', 'max-height': '1vh', 'opacity': '0' })
 
     setTimeout(function() {
         //tootDiv.innerHTML = toots[picked].content + "<b>" + picked + " " + toots.length + "</b>"
@@ -215,10 +217,10 @@ function setTootText(toots, theDomain) {
     
     setTimeout(function () {
         $("#tootcontent").show();
-        $("#thebox").animate({'width':'66%', 'max-height':'100%'  })
-        $("#theimage").animate({'width':picWidth, 'height':picHeight })
-        $("#domainname").animate({'font-size':'2.5vw'})
-        $("#tootcontent").animate({'font-size':'2vw', 'width':'100%', 'height': '100%'})
+        $("#thebox").animate({'width':'80%', 'height':'80%', 'opacity': '100', 'opacity': '1'  })
+        $("#theimage").animate({'max-width':'90vw', 'max-height': '60vh', 'opacity': '100' })
+        $("#domainname").animate({'font-size':'1.5vw', 'opacity': '100'})
+        $("#tootcontent").animate({'font-size':'2vw', 'width':'100%', 'height': '100%', 'opacity': '1'})
         }, 1600
     );
 
@@ -241,9 +243,14 @@ function displayToots(domain) {
         if (request.readyState == 4){
              if (request.status == 200) {
                 var toots = JSON.parse(request.responseText);
+                toots = extractMedia(toots)
                 cachedToots[thisDomain] = toots
                 setTootText(toots, thisDomain);
             }
+            else{
+                cachedToots[thisDomain] = []; // not reachable, just fill with blank
+            }
+        //console.log(request.readyState);
         }
     }
     request.onreadystatechange = processToots;
@@ -269,5 +276,6 @@ $(document).ready(function() {
 <p style="text-align: left">Click stuff to join.<span class="warning"> May contain offensive content</span></p>
 <div id="spacer"></div>
 
-<div id="thebox"> <div id="tootcontent"><p style="text-align: center;"><img id="theimage" src=""></img></p></div>
-<h2 id="domainname"></h2></div>
+<div id="thebox"><div id="tootcontent"><p style="text-align: center;"><img id="theimage" src=""></img></p></div>
+<h2 id="domainname"></h2>
+</div>
