@@ -157,6 +157,9 @@ for (i in domainData) {
     }
 }
 
+// Mastodon uses "Link" http header
+// to describe the next available page of data.
+// parse it, and return it if available, otherwise, null
 function extractNextURL(headerValue) {
     if (headerValue == null) return null;
     
@@ -170,6 +173,11 @@ function extractNextURL(headerValue) {
     return match[1];   
 }
 
+// an XMLHttpRequest wrapped in a promise.
+// jsonData is the currently gathered json data,
+// url is the next json url to load. If there is more data,
+// promise will continue recursively until
+// jsonData is filled
 function promiseRequest(jsonData, url) {
     var request = new XMLHttpRequest();
     var promise = new Promise( function (fulfill, reject) {
@@ -198,18 +206,25 @@ function promiseRequest(jsonData, url) {
     return promise;
 }
 
+// extract the domain from the "uri" field.
+// FIXME: I should just use the https:// url instead
+// because they could put anything in the uri TBH
 function extractDomain (uriTag) {
 
     var pat = /^tag:([^,]*),/
     var found = pat.exec(uriTag)
     if (found == undefined){
         console.log("EEEEEEEEEEEEEEEEE: ", uriTag)
+        // Gnu Social (guess?)
         pat = /^urn:X-dfrn:([^:]+)::/
         return pat.exec(uriTag)[1]
     }
     return found[1]
 }
 
+// add the uuid of the toot to the global cachedTags
+// directory. cachedTags looks like {'thetag': {'thedomain.social': {'uri': true}}}
+// the point of this business is because looking up uri by hash is faster than a list.
 function addTag(tagname, uri) {
     var d = extractDomain(uri)
     var id = uri
@@ -228,6 +243,9 @@ function addTag(tagname, uri) {
 
 var cachedTags = {}
 
+// do the magic of grabbing tags existing publicly at instance 'domain'
+// returns a promise with result [jsonList, url]
+// containing a list of toots with that tag & the last url used
 function tagGrabber (domain, tag) {
     var done = false
     var jsonList = []
@@ -282,6 +300,9 @@ function tagGrabber (domain, tag) {
 
 }
 
+// calculate scores for a dict of toot idsin the form {'domain.social': {'uri1': true, 'uri2': true}}
+// return a list of {'domain': domainname, 'count': tootcount, 'score': score}
+// score is a float between 0-1, 1 being highest score.
 function buildScore(taggies) {
     var result = []
     var maxscore = 0
@@ -319,6 +340,12 @@ function buildScore(taggies) {
     return result;
 }
 
+// another wrapper around promise stuff.
+// Given a tag 'searchterm',
+// Do all the magic and set the HTML of thebox
+// to reflect instance tag mention counts.
+// instance to search is chosen randomly from a list of about 700
+// to avoid single server bashing
 function launchTagGrabber(searchterm) {
     var instance = Math.floor(Math.random()*instances.length)
     tagGrabber(instances[instance], searchterm)
@@ -348,6 +375,7 @@ function launchTagGrabber(searchterm) {
     })
 }
 
+// convenience function in case I need to change sizes later
 function getFontSize(scoreValue) {
     const min = 1.5
     const max = 6
@@ -355,6 +383,7 @@ function getFontSize(scoreValue) {
     return min + (max-min) * scoreValue;
 }
 
+// handler for search box return pressed
 function searchIt(e) {
     if (e.keyCode == 13) {
         var tb = document.getElementById("searchbox");
