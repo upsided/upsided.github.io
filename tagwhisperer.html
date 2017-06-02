@@ -219,7 +219,11 @@ function extractDomain (uriTag) {
         console.log("Possible gnuSocial instance: ", uriTag)
         // Gnu Social (guess?)
         pat = /^urn:X-dfrn:([^:]+)::/
-        return pat.exec(uriTag)[1]
+        found =  pat.exec(uriTag)[1]
+        if (found != null){
+            return found[1]
+        }
+        else return null;
     }
     return found[1]
 }
