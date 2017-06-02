@@ -154,7 +154,7 @@ const domainData = {"social.celabs.com": {"statuses": 1, "users": 6, "connection
 // use the ones with lots of connections as search targets
 // building a list like this almost guarantees a fail
 for (i in domainData) {
-    if (domainData[i]['connections'] > 800) {
+    if (domainData[i]['connections'] > 1000) {
         instances.push(i)
     }
 }
