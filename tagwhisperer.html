@@ -403,6 +403,8 @@ function buildScore(taggies) {
 
 function conditionSearchterm(searchterm) {
     var result = searchterm.toLowerCase();
+    var justword = /((\w|\d)+)/
+    
     result = result.trim();
     var twowords;
     twowords = result.split(" ");
@@ -410,7 +412,11 @@ function conditionSearchterm(searchterm) {
     for (var w in twowords) {
         result = result + twowords[w]
     }
-    console.log("Conditioned: ", searchterm, result)
+    //console.log("Conditioned: ", searchterm, result)
+    var regex = justword.exec(result)
+    if (regex != null) {
+        result = regex[0]
+    }
     return result
 }
 // another wrapper around promise stuff.
