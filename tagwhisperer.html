@@ -372,10 +372,9 @@ function buildScore(taggies) {
         {
             statuses = 5000;  // FIXME: presume 5000 statuses?
         }
-        // dividing by status count seemed a good idea,
-        // but it biases the list
+
+        // fibonacci suggestion by Irick https://discourse.joinmastodon.org/u/irick/summary
         score = 1/statuses ;
-        // score = 0;
         
         for (d in dict) {
             // score += (1/fib)/statuses
@@ -445,7 +444,8 @@ function launchTagGrabber(searchterm) {
             var scores = buildScore(cachedTags[searchterm])
             //console.log(scores)
             var html = ""
-
+            thediv.innerHTML = ""
+            
             if (scores.length > 0){
                 for (i in scores) {
                     var fontsize = getFontSize(scores[i]['score']);
@@ -458,14 +458,16 @@ function launchTagGrabber(searchterm) {
                 thediv.innerHTML = html
             }
             else {
-                thediv.innerHTML = `<h4>#${searchterm} not found in the fediverse (wha?)</h4>`;
+                thediv.innerHTML = `<h4>#${searchterm} not found in the fediverse (wha?) <a href="#" onclick="doSearch();">Search for #{searchterm} Again</a></h4>`;
             }
         }
         else {
-            thediv.innerHTML = `<h4>#${searchterm} not found in the fediverse (wha?)</h4>`;
+            thediv.innerHTML = `<h4>#${searchterm} not found in the fediverse (wha?) <a href="#" onclick="doSearch();">Search for #${searchterm} Again</a></h4>`;
         }
         thediv = document.getElementById("accordingto")
         thediv.innerHTML = `<p class="footnote">according to <a href="https://${instances[instance]}">${instances[instance]}</a></p>`
+        
+
     })
 }
 
@@ -479,11 +481,18 @@ function getFontSize(scoreValue) {
     return min + (max-min) * scoreValue;
 }
 
+function doSearch() {
+        var tb = document.getElementById("searchbox");
+        var thebox = document.getElementById("thebox");
+        thebox.innerHTML = ""
+        launchTagGrabber(tb.value);
+        return false;
+}
+
 // handler for search box return pressed
 function searchIt(e) {
     if (e.keyCode == 13) {
-        var tb = document.getElementById("searchbox");
-        launchTagGrabber(tb.value);
+        doSearch()
         return false;
     }
 }
@@ -513,7 +522,9 @@ window.onload = function () {
 <div class="spacer"></div>
 <h1><a href="https://joinmastodon.org">The Fediverse</a> Tag Whisperer</h1>
 <div class="wrapper"><input id="searchbox" onkeypress="return searchIt(event)" type="text"></input></div>
+<div id="content">
 <div id="thebox"> </div>
 <div id="accordingto"></div>
+<div>
 </div>
 </body>
