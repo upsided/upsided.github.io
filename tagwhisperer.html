@@ -3,159 +3,6 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=yes" />
-<style>
-body {
-    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
-    font-size: 3.6vw;
-    line-height: 4vw;
-    color: #aaa;
-    background-color: #282c37 ;
-    margin: 10px 13px 10px 13px;
-}
-table {
-	margin: 10px 0 15px 0;
-	border-collapse: collapse;
-}
-td,th {
-	border: 1px solid #ddd;
-	padding: 3px 10px;
-}
-th {
-	padding: 5px 10px;
-}
-
-a {
-    color: #8089a4;
-    text-decoration: none;
-}
-a:hover {
-    color: #fff;
-    text-decoration: none;
-}
-a img {
-    border: none;
-}
-p {
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: #ddd;
-    line-height: 36px;
-}
-h1 {
-    margin-bottom: 18px;
-    font-size: 30px;
-}
-h2 {
-    font-size: 24px;
-    margin-bottom: 0px;
-}
-h3 {
-    font-size: 18px;
-}
-h4 {
-    font-size: 16px;
-}
-h5 {
-    font-size: 14px;
-}
-h6 {
-    font-size: 13px;
-}
-hr {
-    margin: 0 0 19px;
-    border: 0;
-    border-bottom: 1px solid #ccc;
-}
-h1 {
-    text-align: center; 
-    padding-bottom: 0vw;
-    padding-top: 0px;
-    margin-top: 3vh;
-    font-size: 4vw;
-    line-height: 4.5vw;
-}
-h2 {
-    text-align: center; 
-    font-size: 6vw;
-    line-height: 6.5vw;
-    margin-top:1vw;
-    padding-bottom: 1vw;
-}
-
-html,body {
-background-color: #282c37;
-} 
-p.footnote{
-    font-size: 2vh;
-    text-align: right;
-}
-#controlbar, #randomtag {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    line-height: 2vw;
-}
-#everything {
-    background-color: #282c37;
-    width: 100%;
-    height: 100%;
-}
-#thebox {
-  background-color: grey;
-  width: 80vw;
-  height: auto;
-  padding: 3vw;
-  background-color: #21242b;
-  margin: 0 auto 0 auto;
-  border-radius: 12px;  
-  box-shadow: 0px 0px 100px -10px #888888;
-  overflow: hidden;
-
-}
-#domainname {
-}
-.spacer {
-    height: 3vh;
-}
-
-#searchbox {
-    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
-    width: 61vw;
-    height: 11vh;
-    font-size: 6vh;
-    margin: 0 auto;
-    display: block;
-    text-align: center;
-    padding-top: 2vh;
-    background: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom-style: solid;
-    border-color: #444;
-    color: #aaa;
-    overflow: visible
-
-}
-#searchbox:focus {
-   outline-width: 0;
-}
-#accordingto {
-   width: 80vw;
-   margin: 0 auto;
-}
-
-div.wrapper {
-    width: 100vw;
-    margin-bottom: 10vh;
-    overflow: visible
-}
-
-</style>
 <script>
 /* so very sorry about the quality of the JavaScript. Write to your MP */
 const MaxTootDownload = 1 // limit tag download to this many 40-toot pages
@@ -477,7 +324,7 @@ function launchTagGrabber(searchterm) {
 // sizes are percentages of vw (viewport width)
 // score is from 0 - 1
 function getFontSize(scoreValue) {
-    const min = 1.5
+    const min = 2.5
     const max = 6
     
     return min + (max-min) * scoreValue;
@@ -514,7 +361,159 @@ window.onload = function () {
 }
 
 </script>
+<style>
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 3.6vw;
+    line-height: 4vw;
+    color: #aaa;
+    background-color: #282c37 ;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;
+}
 
+a {
+    color: #8089a4;
+    text-decoration: none;
+}
+a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #ddd;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+    margin-bottom: 0px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+h1 {
+    text-align: center; 
+    padding-bottom: 0vw;
+    padding-top: 0px;
+    margin-top: 3vh;
+    font-size: 4vw;
+    line-height: 4.5vw;
+}
+h2 {
+    text-align: center; 
+    font-size: 6vw;
+    line-height: 6.5vw;
+    margin-top:1vw;
+    padding-bottom: 1vw;
+}
+
+html,body {
+background-color: #282c37;
+} 
+p.footnote{
+    font-size: 2vh;
+    text-align: right;
+}
+#controlbar, #randomtag {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    line-height: 2vw;
+}
+#everything {
+    background-color: #282c37;
+    width: 100%;
+    height: 100%;
+}
+#thebox {
+  background-color: grey;
+  width: 80vw;
+  height: auto;
+  padding: 3vw;
+  background-color: #21242b;
+  margin: 0 auto 0 auto;
+  border-radius: 12px;  
+  box-shadow: 0px 0px 100px -10px #888888;
+  overflow: hidden;
+
+}
+#domainname {
+}
+.spacer {
+    height: 3vh;
+}
+
+#searchbox {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    width: 61vw;
+    height: 11vh;
+    font-size: 6vh;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    padding-top: 2vh;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-style: solid;
+    border-color: #444;
+    color: #aaa;
+    overflow: visible
+
+}
+#searchbox:focus {
+   outline-width: 0;
+}
+#accordingto {
+   width: 80vw;
+   margin: 0 auto;
+}
+
+div.wrapper {
+    width: 100vw;
+    margin-bottom: 10vh;
+    overflow: visible
+}
+
+</style>
 <title>Tag Whisperer</title>
 </head>
 <body>
