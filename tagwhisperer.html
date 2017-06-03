@@ -28,6 +28,8 @@ var taglist = ["04", "05", "1", "100selfieschallenge", "11t", "13reasonswhy", "1
 for (i in domainData) {
     if (domainData[i]['connections'] > 1000) {
         instances.push(i)
+        if (domainData[i]['connections'] > 1200)
+            instances.push(i) // bias! FOR SHAME
     }
 }
 
@@ -121,6 +123,8 @@ function extractDomain (uriTag) {
 function addTag(tagname, url) {
     var d = extractDomain(url)
     var id = url
+    if (d == null) return
+
     if (cachedTags[tagname] == undefined) {
         cachedTags[tagname] = {}
         cachedTags[tagname][d] = {}
