@@ -6,8 +6,8 @@
 <style>
 body {
     font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
-    font-size: 2vw;
-    line-height: 3vw;
+    font-size: 3.6vw;
+    line-height: 4vw;
     color: #aaa;
     background-color: #282c37 ;
     margin: 10px 13px 10px 13px;
@@ -36,7 +36,6 @@ a img {
     border: none;
 }
 p {
-    margin-bottom: 9px;
 }
 h1,
 h2,
@@ -125,9 +124,9 @@ p.footnote{
 
 #searchbox {
     font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
-    width: 50vw;
+    width: 61vw;
     height: 11vh;
-    font-size: 7vh;
+    font-size: 6vh;
     margin: 0 auto;
     display: block;
     text-align: center;
@@ -139,6 +138,8 @@ p.footnote{
     border-bottom-style: solid;
     border-color: #444;
     color: #aaa;
+    overflow: visible
+
 }
 #searchbox:focus {
    outline-width: 0;
@@ -151,6 +152,7 @@ p.footnote{
 div.wrapper {
     width: 100vw;
     margin-bottom: 10vh;
+    overflow: visible
 }
 
 </style>
@@ -523,7 +525,7 @@ window.onload = function () {
 <h1><a href="https://joinmastodon.org">The Fediverse</a> Tag Whisperer</h1>
 <div class="wrapper"><input id="searchbox" onkeypress="return searchIt(event)" type="text"></input></div>
 <div id="content">
-<div id="thebox"> </div>
+<div id="thebox"> <p style="text-align: center">Type a hashtag to explore the Fediverse.</div>
 <div id="accordingto"></div>
 <div>
 </div>
