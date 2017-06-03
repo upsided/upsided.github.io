@@ -401,6 +401,18 @@ function buildScore(taggies) {
     return result;
 }
 
+function conditionSearchterm(searchterm) {
+    var result = searchterm.toLowerCase();
+    result = result.trim();
+    var twowords;
+    twowords = result.split(" ");
+    result = "";
+    for (var w in twowords) {
+        result = result + twowords[w]
+    }
+    console.log("Conditioned: ", searchterm, result)
+    return result
+}
 // another wrapper around promise stuff.
 // Given a tag 'searchterm',
 // Do all the magic and set the HTML of thebox
@@ -409,6 +421,7 @@ function buildScore(taggies) {
 // to avoid single server bashing
 function launchTagGrabber(searchterm) {
     var instance = Math.floor(Math.random()*instances.length)
+    searchterm = conditionSearchterm(searchterm)
     tagGrabber(instances[instance], searchterm)
     .then(function() {
         // global cachedTags is now filled properly
