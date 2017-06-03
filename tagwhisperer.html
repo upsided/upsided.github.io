@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=yes" />
@@ -145,7 +145,7 @@ function addTag(tagname, url) {
 }
 
 
-// do the magic of grabbing tags existing publicly at instance 'domain'
+// do the magic of grabbing tagged toots existing publicly at instance 'domain'
 // returns a promise with result [jsonList, url]
 // containing a list of toots with that tag & the last url used
 // this is recursive because servers provide data page after page.
@@ -157,7 +157,7 @@ function tagGrabber (domain, tag) {
     return recursiveRequest(jsonList, url+"?limit=40", 1)
     .then( function (result) { 
         var tootlist = result[0];
-        for (i in tootlist) {
+        for (let i in tootlist) {
             addTag(tag, tootlist[i]['url'])
         }
     } )
@@ -337,7 +337,12 @@ function getFontSize(scoreValue) {
 function doSearch() {
         var tb = document.getElementById("searchbox");
         var thebox = document.getElementById("thebox");
-        tb.focus()
+        tb.focus() // dunno why, but I need it
+
+        // setting the content empty gives the user
+        // an indication that some work is happening.
+        // This is necessary because sometimes the same text
+        // appears in the box, and it looks like the page is just sitting there.
         thebox.innerHTML = ""
         launchTagGrabber(tb.value);
         return false;
@@ -503,7 +508,7 @@ p.footnote{
     border-bottom-style: solid;
     border-color: #444;
     color: #aaa;
-    overflow: visible
+    overflow: visible;
 
 }
 #searchbox:focus {
