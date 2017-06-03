@@ -89,7 +89,10 @@ h2 {
 html,body {
 background-color: #282c37;
 } 
-
+p.footnote{
+    font-size: 2vh;
+    text-align: right;
+}
 #controlbar, #TV {
     margin: 0 0 0 0;
     padding: 0 0 0 0;
@@ -117,10 +120,10 @@ background-color: #282c37;
     height:2vh;
 }
 #searchbox {
-    height: 3vh;
-    font-size: 8vh;
     width: 50vw;
-    height: 10vh;
+    height: 8.5vw;
+    font-size: 7vw;
+    line-height: 8vw;
     margin: 0 auto;
     display: block;
     text-align: center;
@@ -133,6 +136,10 @@ background-color: #282c37;
 }
 #searchbox:focus {
    outline-width: 0;
+}
+#accordingto {
+   width: 80vw;
+   margin: 0 auto;
 }
 
 div.wrapper {
@@ -211,7 +218,7 @@ function promiseRequest(jsonData, url) {
 // extract the domain from the "uri" field.
 // FIXME: I should just use the https:// url instead
 // because they could put anything in the uri TBH
-function extractDomain (uriTag) {
+function extractDomainOld (uriTag) {
 
     var pat = /^tag:([^,]*),/
     var found = pat.exec(uriTag)
@@ -228,22 +235,35 @@ function extractDomain (uriTag) {
     return found[1]
 }
 
+function extractDomain (uriTag) {
+
+    var pat = /^https?:\/\/([^/]+)\//
+    var found = pat.exec(uriTag)
+    //console.log("FOUND: #############################", found)
+    if (found == undefined){
+        console.log("Couldn't parse url for domain: ", uriTag)
+        return null;
+    }
+    return found[1]
+}
+
+
 // add the uuid of the toot to the global cachedTags
 // directory. cachedTags looks like {'thetag': {'thedomain.social': {'uri': true}}}
 // the point of this business is because looking up uri by hash is faster than a list.
-function addTag(tagname, uri) {
-    var d = extractDomain(uri)
-    var id = uri
+function addTag(tagname, url) {
+    var d = extractDomain(url)
+    var id = url
     if (cachedTags[tagname] == undefined) {
         cachedTags[tagname] = {}
         cachedTags[tagname][d] = {}
-        cachedTags[tagname][d][uri] = true
+        cachedTags[tagname][d][url] = true
         
     }
     else {
         if (cachedTags[tagname][d] == undefined)
             cachedTags[tagname][d] = {}
-        cachedTags[tagname][d][uri] = true;
+        cachedTags[tagname][d][url] = true;
     }
 }
 
@@ -301,7 +321,7 @@ function tagGrabber (domain, tag) {
             //console.log(tootlist[i])
             //console.log(i)
             //console.log("#######################################################################")
-            addTag(tag, tootlist[i]['uri'])
+            addTag(tag, tootlist[i]['url'])
         }
         //console.log(cachedTags)
     } )
@@ -316,16 +336,17 @@ function tagGrabber (domain, tag) {
 // score is a float between 0-1, 1 being highest score.
 function buildScore(taggies) {
     var result = []
-    var maxscore = 0
+    var maxscore = -1;
+    var minscore = 100000000;
+    
     for (var domain in taggies) {
         var dict = taggies[domain]
         var count = 0
-        var score = 0
+        var score = 1
         var usercount = 0
-        
-        for (d in dict) {count++;}
+        var fib = 1, fibprev = 0
 
-        score = count
+
         /*
         // didn't work because low user counts balloon the score
         if (domainData[domain] != undefined && domainData['users'] != "?"){
@@ -337,24 +358,43 @@ function buildScore(taggies) {
         }
         */
 
-        if (domainData[domain] != undefined && domainData['statuses'] != "?"){
+        if (domainData[domain] != undefined && domainData['statuses'] != "?" && domainData['statuses'] > 0){
             statuses =  domainData[domain]['statuses'] 
         }
         else
         {
             statuses = 5000;  // FIXME: presume 5000 statuses?
         }
+        // dividing by status count seemed a good idea,
+        // but it biases the list
+        score = 1/statuses ;
+        // score = 0;
         
+        for (d in dict) {
+            score += (1/fib)/statuses
+            count++;
+            fib = fib + fibprev
+            fibprev = fib - fibprev
+            //console.log(fib)
+            }
+
+        //score = score/statuses
         if (score > maxscore) maxscore = score;
-        
+        if (score < minscore) minscore = score;
+        //console.log(domain, score)
         result.push({'domain': domain, 'count': count, 'score': score, 'statuses': statuses})
     }
 
+    if (result.length == 0) return [];
+    if (result.length == 1) {
+        result[0]['score'] = 1
+        return result
+    }    
     
-    var normal = 1/maxscore;
-    
+    var normal = 1/(maxscore-minscore);
+    //console.log("MAX-MIN ", maxscore, minscore, maxscore-minscore)
     for (var d in result) {
-        result[d]['score'] = result[d]['score']*normal;
+        result[d]['score'] = (result[d]['score']-minscore)*normal;
     }
 
     result.sort(function (a, b) { return a['score'] >= b['score'] ? -1 : 1 ; })
@@ -384,6 +424,9 @@ function launchTagGrabber(searchterm) {
                     var fontsize = getFontSize(scores[i]['score']);
                     var lineheight = fontsize * 1.2
                     html = html + '<span style="font-size: ' + getFontSize(scores[i]['score']) + 'vw; line-height: ' + lineheight + 'vw">' + `<a href="https://${scores[i].domain}/about/more">${scores[i].domain}</a>` + '</span>\n'
+                    
+                    // debug version
+                    //html = html + '<span style="font-size: ' + getFontSize(scores[i]['score']) + 'vw; line-height: ' + lineheight + 'vw">' + `<a href="https://${scores[i].domain}/about/more">${scores[i].domain}</a> ${scores[i].count} ${scores[i].score} ` + '</span>\n'
                 }
                 thediv.innerHTML = html
             }
@@ -394,7 +437,8 @@ function launchTagGrabber(searchterm) {
         else {
             thediv.innerHTML = `<h4>#${searchterm} not found in the fediverse (wha?)</h4>`;
         }
-
+        thediv = document.getElementById("accordingto")
+        thediv.innerHTML = `<p class="footnote">according to <a href="https://${instances[instance]}">${instances[instance]}</a></p>`
     })
 }
 
@@ -430,7 +474,7 @@ window.onload = function () {
 <div class="spacer"></div>
 <h1><a href="https://joinmastodon.org">The Fediverse</a> Tag Whisperer</h1>
 <div class="wrapper"><input id="searchbox" onkeypress="return searchIt(event)" type="text"></input></div>
-<div id="thebox"> 
-</div>
+<div id="thebox"> </div>
+<div id="accordingto"></div>
 </div>
 </body>
