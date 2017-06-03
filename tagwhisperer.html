@@ -75,6 +75,8 @@ hr {
 h1 {
     text-align: center; 
     padding-bottom: 0vw;
+    padding-top: 0px;
+    margin-top: 3vh;
     font-size: 4vw;
     line-height: 4.5vw;
 }
@@ -93,9 +95,10 @@ p.footnote{
     font-size: 2vh;
     text-align: right;
 }
-#controlbar, #TV {
+#controlbar, #randomtag {
     margin: 0 0 0 0;
     padding: 0 0 0 0;
+    line-height: 2vw;
 }
 #everything {
     background-color: #282c37;
@@ -117,21 +120,23 @@ p.footnote{
 #domainname {
 }
 .spacer {
-    height:2vh;
+    height: 3vh;
 }
 
 #searchbox {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
     width: 50vw;
-    height: 8.5vw;
-    font-size: 7vw;
-    line-height: 8vw;
+    height: 11vh;
+    font-size: 7vh;
     margin: 0 auto;
     display: block;
     text-align: center;
+    padding-top: 2vh;
     background: none;
     border-top: none;
     border-left: none;
     border-right: none;
+    border-bottom-style: solid;
     border-color: #444;
     color: #aaa;
 }
@@ -444,7 +449,7 @@ function launchTagGrabber(searchterm) {
             if (scores.length > 0){
                 for (i in scores) {
                     var fontsize = getFontSize(scores[i]['score']);
-                    var lineheight = fontsize * 1.2
+                    var lineheight = fontsize * 1.1
                     html = html + '<span style="font-size: ' + getFontSize(scores[i]['score']) + 'vw; line-height: ' + lineheight + 'vw">' + `<a href="https://${scores[i].domain}/about/more">${scores[i].domain}</a>` + '</span>\n'
                     
                     // debug version
@@ -488,6 +493,7 @@ function randomSearch() {
     if (box) {
         let choice = taglist[Math.floor(Math.random()*taglist.length)]
         box.value = choice
+        box.focus()
         launchTagGrabber(box.value)
     }
 }
