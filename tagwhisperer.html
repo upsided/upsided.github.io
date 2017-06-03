@@ -484,6 +484,7 @@ function getFontSize(scoreValue) {
 function doSearch() {
         var tb = document.getElementById("searchbox");
         var thebox = document.getElementById("thebox");
+        tb.focus()
         thebox.innerHTML = ""
         launchTagGrabber(tb.value);
         return false;
@@ -502,8 +503,7 @@ function randomSearch() {
     if (box) {
         let choice = taglist[Math.floor(Math.random()*taglist.length)]
         box.value = choice
-        box.focus()
-        launchTagGrabber(box.value)
+        doSearch()
     }
 }
 
