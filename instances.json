@@ -81,6 +81,42 @@
     "users": null
   },
   {
+    "connections": 37,
+    "domain": "88.om",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 18,
+    "title": null,
+    "users": 1
+  },
+  {
+    "connections": 147,
+    "domain": "Equestria.Social",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 873,
+    "title": null,
+    "users": 17
+  },
+  {
+    "connections": 5,
+    "domain": "MMDer.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 59,
+    "title": null,
+    "users": 1
+  },
+  {
+    "connections": 265,
+    "domain": "McDev.Tech",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 4689,
+    "title": null,
+    "users": 267
+  },
+  {
     "connections": 301,
     "domain": "Pouet.social",
     "name": "Pouet.social",
@@ -153,6 +189,15 @@
     "users": 70
   },
   {
+    "connections": 416,
+    "domain": "admins.town",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 584,
+    "title": null,
+    "users": 68
+  },
+  {
     "connections": 477,
     "domain": "adney.land",
     "name": "adney.land",
@@ -214,6 +259,15 @@
     "statuses": 9,
     "title": "Mastodon",
     "users": 1
+  },
+  {
+    "connections": 70,
+    "domain": "akashiensis.online",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 664,
+    "title": null,
+    "users": 7
   },
   {
     "connections": 92,
@@ -333,12 +387,30 @@
     "users": 214
   },
   {
+    "connections": 221,
+    "domain": "anomalocaris.link",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 167,
+    "title": null,
+    "users": 14
+  },
+  {
     "connections": 95,
     "domain": "anrealmsdon.com",
     "name": "anrealmsdon.com",
     "openRegistrations": false,
     "statuses": 17,
     "title": "Anrealmsdon",
+    "users": 3
+  },
+  {
+    "connections": 24,
+    "domain": "ans3.tm2t.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 43,
+    "title": null,
     "users": 3
   },
   {
@@ -621,6 +693,15 @@
     "users": 61
   },
   {
+    "connections": 197,
+    "domain": "blackice.online",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 143,
+    "title": null,
+    "users": 4
+  },
+  {
     "connections": null,
     "domain": "bldon.net",
     "name": "bldon.net",
@@ -637,6 +718,24 @@
     "statuses": 199,
     "title": "bleepbloop.club",
     "users": 8
+  },
+  {
+    "connections": 247,
+    "domain": "blessedgeeks.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 97,
+    "title": null,
+    "users": 1
+  },
+  {
+    "connections": 199,
+    "domain": "blessedgeeks.org",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 174,
+    "title": null,
+    "users": 1
   },
   {
     "connections": 209,
@@ -702,6 +801,15 @@
     "users": 70
   },
   {
+    "connections": 48,
+    "domain": "bookdon.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 32,
+    "title": null,
+    "users": 3
+  },
+  {
     "connections": 224,
     "domain": "bookn.me",
     "name": "bookn.me",
@@ -756,6 +864,15 @@
     "users": null
   },
   {
+    "connections": 77,
+    "domain": "brined.fish",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 48,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 633,
     "domain": "brrrt.eu",
     "name": "brrrt.eu",
@@ -763,6 +880,15 @@
     "statuses": 13190,
     "title": "Les copains d'abord",
     "users": 134
+  },
+  {
+    "connections": 24,
+    "domain": "buntadon.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 79,
+    "title": null,
+    "users": 6
   },
   {
     "connections": 316,
@@ -781,6 +907,24 @@
     "statuses": 15,
     "title": "Mastodon",
     "users": 10
+  },
+  {
+    "connections": 580,
+    "domain": "cafe.des-blogueurs.org",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 8405,
+    "title": null,
+    "users": 23
+  },
+  {
+    "connections": 105,
+    "domain": "cafetodon.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 29,
+    "title": null,
+    "users": 22
   },
   {
     "connections": 210,
@@ -1026,6 +1170,15 @@
     "users": 8
   },
   {
+    "connections": 145,
+    "domain": "claristdon.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 772,
+    "title": null,
+    "users": 19
+  },
+  {
     "connections": 42,
     "domain": "clc.plus",
     "name": "clc.plus",
@@ -1123,6 +1276,15 @@
     "statuses": 166,
     "title": "Mastodon: COMM.CX",
     "users": 2
+  },
+  {
+    "connections": 318,
+    "domain": "comp.masto.host",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 532,
+    "title": null,
+    "users": 10
   },
   {
     "connections": 6,
@@ -1258,6 +1420,15 @@
     "statuses": 56,
     "title": "Mastodon",
     "users": 6
+  },
+  {
+    "connections": 2,
+    "domain": "dancemusic-mstdn.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 44,
+    "title": null,
+    "users": 4
   },
   {
     "connections": 475,
@@ -1474,6 +1645,15 @@
     "statuses": 299,
     "title": "holy\u4e3c",
     "users": 1
+  },
+  {
+    "connections": 440,
+    "domain": "don.inux39.me",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 2093,
+    "title": null,
+    "users": 3
   },
   {
     "connections": 251,
@@ -1773,6 +1953,15 @@
     "users": 10
   },
   {
+    "connections": 116,
+    "domain": "elephant.bluecore.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 125,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 181,
     "domain": "eletusk.club",
     "name": "eletusk.club",
@@ -1807,6 +1996,15 @@
     "statuses": 239,
     "title": "\ud83d\ude38Emojidon",
     "users": 18
+  },
+  {
+    "connections": 386,
+    "domain": "encryptr.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 412,
+    "title": null,
+    "users": 6
   },
   {
     "connections": 175,
@@ -1908,6 +2106,15 @@
     "users": 1
   },
   {
+    "connections": 13,
+    "domain": "fdb.to",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 719,
+    "title": null,
+    "users": 24
+  },
+  {
     "connections": 644,
     "domain": "fern.surgeplay.com",
     "name": "fern.surgeplay.com",
@@ -1969,6 +2176,15 @@
     "statuses": 36,
     "title": "Mastodon @fo0bar.org",
     "users": 1
+  },
+  {
+    "connections": 342,
+    "domain": "foo.sx",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 381,
+    "title": null,
+    "users": 2
   },
   {
     "connections": 83,
@@ -2403,6 +2619,15 @@
     "users": 15
   },
   {
+    "connections": 491,
+    "domain": "h.kher.nl",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 197,
+    "title": null,
+    "users": 3
+  },
+  {
     "connections": 516,
     "domain": "hackers.town",
     "name": "hackers.town",
@@ -2410,6 +2635,15 @@
     "statuses": 3460,
     "title": "The Gibson Mainframe",
     "users": 191
+  },
+  {
+    "connections": 5,
+    "domain": "hackerzlab.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 105,
+    "title": null,
+    "users": 20
   },
   {
     "connections": 200,
@@ -2437,6 +2671,15 @@
     "statuses": 910,
     "title": "Hamtter[For Radio Amateur]",
     "users": 48
+  },
+  {
+    "connections": 128,
+    "domain": "handon.club",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 1287,
+    "title": null,
+    "users": 33
   },
   {
     "connections": 67,
@@ -2545,6 +2788,15 @@
     "statuses": 0,
     "title": "Mastodon",
     "users": 0
+  },
+  {
+    "connections": 304,
+    "domain": "hokutodon.co",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 79898,
+    "title": null,
+    "users": 176
   },
   {
     "connections": 280,
@@ -2745,6 +2997,15 @@
     "users": 12
   },
   {
+    "connections": null,
+    "domain": "imaginair.es",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": null,
+    "title": null,
+    "users": null
+  },
+  {
     "connections": 743,
     "domain": "imastodon.net",
     "name": "imastodon.net",
@@ -2761,6 +3022,15 @@
     "statuses": 2535,
     "title": "\u3044\u306a\u3053\u3093",
     "users": 93
+  },
+  {
+    "connections": 3,
+    "domain": "indyjp.club",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 210,
+    "title": null,
+    "users": 9
   },
   {
     "connections": 422,
@@ -2889,6 +3159,15 @@
     "users": 248
   },
   {
+    "connections": 110,
+    "domain": "jimotodon.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 2411,
+    "title": null,
+    "users": 8
+  },
+  {
     "connections": 104,
     "domain": "jitakudon.com",
     "name": "jitakudon.com",
@@ -2896,6 +3175,15 @@
     "statuses": 17,
     "title": "\u81ea\u5b85\u4e3c",
     "users": 1
+  },
+  {
+    "connections": 142,
+    "domain": "jitakurack.chotto.moe",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 182,
+    "title": null,
+    "users": 20
   },
   {
     "connections": 4,
@@ -2977,6 +3265,15 @@
     "statuses": 1377,
     "title": "\u304b\u304f\u3069\u3093",
     "users": 238
+  },
+  {
+    "connections": 4,
+    "domain": "kamiyacho.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 257,
+    "title": null,
+    "users": 5
   },
   {
     "connections": 5,
@@ -3186,6 +3483,15 @@
     "users": 165
   },
   {
+    "connections": 144,
+    "domain": "koyuston.tk",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 52,
+    "title": null,
+    "users": 4
+  },
+  {
     "connections": 23,
     "domain": "kpodon.jp",
     "name": "kpodon.jp",
@@ -3348,6 +3654,15 @@
     "users": 1
   },
   {
+    "connections": 28,
+    "domain": "linuxjobs.social",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 161,
+    "title": null,
+    "users": 12
+  },
+  {
     "connections": 566,
     "domain": "linuxrocks.online",
     "name": "linuxrocks.online",
@@ -3402,6 +3717,15 @@
     "users": 6
   },
   {
+    "connections": 52,
+    "domain": "lovelinus.club",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 37,
+    "title": null,
+    "users": 2
+  },
+  {
     "connections": 259,
     "domain": "lovelive-anime.tk",
     "name": "lovelive-anime.tk",
@@ -3427,6 +3751,15 @@
     "statuses": 1120,
     "title": "ltu.social",
     "users": 121
+  },
+  {
+    "connections": 8,
+    "domain": "lupinus.bouquet.blue",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 140,
+    "title": null,
+    "users": 2
   },
   {
     "connections": 15,
@@ -3537,6 +3870,15 @@
     "users": 1
   },
   {
+    "connections": 217,
+    "domain": "m.nintendojo.fr",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 307,
+    "title": null,
+    "users": 4
+  },
+  {
     "connections": 385,
     "domain": "m.okadajp.org",
     "name": "m.okadajp.org",
@@ -3607,6 +3949,15 @@
     "statuses": 562,
     "title": "Mastodon",
     "users": 19
+  },
+  {
+    "connections": 69,
+    "domain": "m.sirousa.me",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 362,
+    "title": null,
+    "users": 1
   },
   {
     "connections": 157,
@@ -3688,6 +4039,24 @@
     "statuses": 5188,
     "title": "Mastodon Onsen",
     "users": 281
+  },
+  {
+    "connections": 3,
+    "domain": "ma.strangeworld.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 90,
+    "title": null,
+    "users": 3
+  },
+  {
+    "connections": 1,
+    "domain": "machidadon.tokyo",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 30,
+    "title": null,
+    "users": 7
   },
   {
     "connections": 75,
@@ -3789,6 +4158,15 @@
     "users": 88
   },
   {
+    "connections": 1297,
+    "domain": "mangadon.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 1273,
+    "title": null,
+    "users": 401
+  },
+  {
     "connections": 144,
     "domain": "manhole.club",
     "name": "manhole.club",
@@ -3814,6 +4192,24 @@
     "statuses": 277,
     "title": "manx.social",
     "users": 52
+  },
+  {
+    "connections": 403,
+    "domain": "mapicardie.fr",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 530,
+    "title": null,
+    "users": 24
+  },
+  {
+    "connections": 118,
+    "domain": "marstodon.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 16274,
+    "title": null,
+    "users": 45
   },
   {
     "connections": 664,
@@ -3877,6 +4273,15 @@
     "statuses": 1,
     "title": "Catsbay Mastodon",
     "users": 1
+  },
+  {
+    "connections": 155,
+    "domain": "mast.eu.org",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 92,
+    "title": null,
+    "users": 2
   },
   {
     "connections": 268,
@@ -3985,6 +4390,15 @@
     "statuses": 947,
     "title": "Mastodon",
     "users": 458
+  },
+  {
+    "connections": 76,
+    "domain": "mastdon.masatoshi-yokota.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 44,
+    "title": null,
+    "users": 1
   },
   {
     "connections": null,
@@ -4275,6 +4689,15 @@
     "users": 11
   },
   {
+    "connections": 10,
+    "domain": "mastodon.aistear.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 17,
+    "title": null,
+    "users": 3
+  },
+  {
     "connections": 102,
     "domain": "mastodon.ajy.co",
     "name": "mastodon.ajy.co",
@@ -4309,6 +4732,15 @@
     "statuses": 36,
     "title": "Ally Mukai",
     "users": 8
+  },
+  {
+    "connections": 19,
+    "domain": "mastodon.antifa.tokyo",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 1364,
+    "title": null,
+    "users": 22
   },
   {
     "connections": 333,
@@ -4734,6 +5166,15 @@
     "users": 85
   },
   {
+    "connections": 883,
+    "domain": "mastodon.cx",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 29218,
+    "title": null,
+    "users": 3184
+  },
+  {
     "connections": 433,
     "domain": "mastodon.cyber-tribal.com",
     "name": "mastodon.cyber-tribal.com",
@@ -5058,6 +5499,15 @@
     "users": 197
   },
   {
+    "connections": 54,
+    "domain": "mastodon.gza.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 16,
+    "title": null,
+    "users": 3
+  },
+  {
     "connections": 737,
     "domain": "mastodon.hackerlab.fr",
     "name": "mastodon.hackerlab.fr",
@@ -5334,6 +5784,24 @@
     "openRegistrations": true,
     "statuses": 7,
     "title": "Mastodon",
+    "users": 1
+  },
+  {
+    "connections": 10,
+    "domain": "mastodon.kirimi.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 69,
+    "title": null,
+    "users": 2
+  },
+  {
+    "connections": 2,
+    "domain": "mastodon.koteitan.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 0,
+    "title": null,
     "users": 1
   },
   {
@@ -5715,6 +6183,15 @@
     "users": 1
   },
   {
+    "connections": 1833,
+    "domain": "mastodon.network",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 63734,
+    "title": null,
+    "users": 6967
+  },
+  {
     "connections": 553,
     "domain": "mastodon.night.coffee",
     "name": "mastodon.night.coffee",
@@ -5796,6 +6273,24 @@
     "users": 2
   },
   {
+    "connections": 132,
+    "domain": "mastodon.oita.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 473,
+    "title": null,
+    "users": 66
+  },
+  {
+    "connections": 315,
+    "domain": "mastodon.on-o.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 1010,
+    "title": null,
+    "users": 2
+  },
+  {
     "connections": 720,
     "domain": "mastodon.opportunis.me",
     "name": "mastodon.opportunis.me",
@@ -5868,6 +6363,15 @@
     "users": 20
   },
   {
+    "connections": 1119,
+    "domain": "mastodon.partipirate.org",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 10907,
+    "title": null,
+    "users": 783
+  },
+  {
     "connections": 23,
     "domain": "mastodon.patallan.com.au",
     "name": "mastodon.patallan.com.au",
@@ -5893,6 +6397,15 @@
     "statuses": 44,
     "title": "Yet Another Mastodon Instance",
     "users": 13
+  },
+  {
+    "connections": 174,
+    "domain": "mastodon.photography",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 83,
+    "title": null,
+    "users": 10
   },
   {
     "connections": 659,
@@ -5947,6 +6460,15 @@
     "statuses": 367,
     "title": "mastodon.potager.org",
     "users": 3
+  },
+  {
+    "connections": 586,
+    "domain": "mastodon.potproject.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 831,
+    "title": null,
+    "users": 2
   },
   {
     "connections": 39,
@@ -6282,6 +6804,15 @@
     "users": 57
   },
   {
+    "connections": 4,
+    "domain": "mastodon.tdr-wdct.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 4,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 37,
     "domain": "mastodon.teamblackberry.jp",
     "name": "mastodon.teamblackberry.jp",
@@ -6507,6 +7038,15 @@
     "users": null
   },
   {
+    "connections": 67,
+    "domain": "mastodon.wakin.site",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 630,
+    "title": null,
+    "users": 9
+  },
+  {
     "connections": 345,
     "domain": "mastodon.weaponvsac.space",
     "name": "mastodon.weaponvsac.space",
@@ -6550,6 +7090,24 @@
     "statuses": 10,
     "title": "Mastodon.work",
     "users": 7
+  },
+  {
+    "connections": 22,
+    "domain": "mastodon.x41.rocks",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 25,
+    "title": null,
+    "users": 2
+  },
+  {
+    "connections": 495,
+    "domain": "mastodon.xsteadfastx.org",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 463,
+    "title": null,
+    "users": 1
   },
   {
     "connections": 1683,
@@ -6921,6 +7479,15 @@
     "users": 9
   },
   {
+    "connections": 4,
+    "domain": "mazzo.masto.host",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 39,
+    "title": null,
+    "users": 2
+  },
+  {
     "connections": 139,
     "domain": "mbstdn.tokyo",
     "name": "mbstdn.tokyo",
@@ -6948,6 +7515,15 @@
     "users": 264
   },
   {
+    "connections": 90,
+    "domain": "md.futa.moe",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 210,
+    "title": null,
+    "users": 46
+  },
+  {
     "connections": 736,
     "domain": "md.ggtea.org",
     "name": "md.ggtea.org",
@@ -6955,6 +7531,15 @@
     "statuses": 2206,
     "title": "GGTea - Mastodon",
     "users": 7
+  },
+  {
+    "connections": 280,
+    "domain": "md.localhost.fyi",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 30,
+    "title": null,
+    "users": 1
   },
   {
     "connections": null,
@@ -7047,6 +7632,15 @@
     "users": 15
   },
   {
+    "connections": 152,
+    "domain": "meganekeesu.tokyo",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 311,
+    "title": null,
+    "users": 16
+  },
+  {
     "connections": 146,
     "domain": "mel.social",
     "name": "mel.social",
@@ -7063,6 +7657,15 @@
     "statuses": 1645,
     "title": "Honey Mummy Central",
     "users": 10
+  },
+  {
+    "connections": 546,
+    "domain": "memetastic.space",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 4522,
+    "title": null,
+    "users": 1806
   },
   {
     "connections": 200,
@@ -7288,6 +7891,15 @@
     "statuses": 130,
     "title": "\u3082\u3075\u3051\u3082\u306e\u3002",
     "users": 41
+  },
+  {
+    "connections": 198,
+    "domain": "mommy.party",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 54,
+    "title": null,
+    "users": 3
   },
   {
     "connections": 195,
@@ -7533,6 +8145,15 @@
     "users": 1
   },
   {
+    "connections": 577,
+    "domain": "mstdn-scc.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 434,
+    "title": null,
+    "users": 15
+  },
+  {
     "connections": 39,
     "domain": "mstdn-server.jp",
     "name": "mstdn-server.jp",
@@ -7594,6 +8215,15 @@
     "statuses": 44,
     "title": "\u307e\u3059\u3068\u3069\u3093",
     "users": 12
+  },
+  {
+    "connections": 3,
+    "domain": "mstdn.791127.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 4,
+    "title": null,
+    "users": 1
   },
   {
     "connections": 309,
@@ -7684,6 +8314,15 @@
     "statuses": 892,
     "title": "Mastdn.barippi.com",
     "users": 27
+  },
+  {
+    "connections": 328,
+    "domain": "mstdn.binfish.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 532,
+    "title": null,
+    "users": 1
   },
   {
     "connections": null,
@@ -7810,6 +8449,15 @@
     "statuses": 52649,
     "title": "Mastodon Club",
     "users": 684
+  },
+  {
+    "connections": 241,
+    "domain": "mstdn.co33k.org",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 3691,
+    "title": null,
+    "users": 1
   },
   {
     "connections": 107,
@@ -7983,6 +8631,15 @@
     "users": 5
   },
   {
+    "connections": 40,
+    "domain": "mstdn.fzmn.blog",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 81,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 38,
     "domain": "mstdn.gaijinsize.com",
     "name": "mstdn.gaijinsize.com",
@@ -8055,6 +8712,15 @@
     "users": 16
   },
   {
+    "connections": 22,
+    "domain": "mstdn.haoyayoi.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 10,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 283,
     "domain": "mstdn.harusamex.com",
     "name": "mstdn.harusamex.com",
@@ -8064,6 +8730,15 @@
     "users": 24
   },
   {
+    "connections": 396,
+    "domain": "mstdn.haun.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 1040,
+    "title": null,
+    "users": 18
+  },
+  {
     "connections": 59,
     "domain": "mstdn.hisurga.com",
     "name": "mstdn.hisurga.com",
@@ -8071,6 +8746,15 @@
     "statuses": 13,
     "title": "Mastodon",
     "users": 1
+  },
+  {
+    "connections": 302,
+    "domain": "mstdn.hjklyubn.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 156,
+    "title": null,
+    "users": 3
   },
   {
     "connections": 533,
@@ -8118,6 +8802,15 @@
     "users": 10
   },
   {
+    "connections": 4,
+    "domain": "mstdn.ibaraki.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 4,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 30,
     "domain": "mstdn.idolhack.com",
     "name": "mstdn.idolhack.com",
@@ -8125,6 +8818,15 @@
     "statuses": 1006,
     "title": "Mastodon for idol",
     "users": 78
+  },
+  {
+    "connections": 4,
+    "domain": "mstdn.ikasekai.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 306,
+    "title": null,
+    "users": 32
   },
   {
     "connections": 142,
@@ -8161,6 +8863,15 @@
     "statuses": 459,
     "title": "Shout",
     "users": 10
+  },
+  {
+    "connections": 441,
+    "domain": "mstdn.itmedia.co.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 80,
+    "title": null,
+    "users": 4
   },
   {
     "connections": null,
@@ -8388,6 +9099,15 @@
     "users": 25
   },
   {
+    "connections": 132,
+    "domain": "mstdn.mk39.xyz",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 268,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 683,
     "domain": "mstdn.mobilehackerz.jp",
     "name": "mstdn.mobilehackerz.jp",
@@ -8406,6 +9126,15 @@
     "users": 1
   },
   {
+    "connections": 27,
+    "domain": "mstdn.monappy.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 5101,
+    "title": null,
+    "users": 111
+  },
+  {
     "connections": 42,
     "domain": "mstdn.monster-girl.homelinux.net",
     "name": "mstdn.monster-girl.homelinux.net",
@@ -8413,6 +9142,24 @@
     "statuses": 507,
     "title": "\u30e2\u30f3\u5a18\u30de\u30b9\u30c8\u30c9\u30f3",
     "users": 74
+  },
+  {
+    "connections": 187,
+    "domain": "mstdn.morendo.daemon.asia",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 167,
+    "title": null,
+    "users": 2
+  },
+  {
+    "connections": 345,
+    "domain": "mstdn.mousou.org",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 499,
+    "title": null,
+    "users": 1
   },
   {
     "connections": 520,
@@ -8550,6 +9297,24 @@
     "users": 1
   },
   {
+    "connections": 186,
+    "domain": "mstdn.ntk.so",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 126,
+    "title": null,
+    "users": 3
+  },
+  {
+    "connections": 224,
+    "domain": "mstdn.nullpoint.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 331,
+    "title": null,
+    "users": 7
+  },
+  {
     "connections": 11,
     "domain": "mstdn.okayama.jp",
     "name": "mstdn.okayama.jp",
@@ -8640,6 +9405,15 @@
     "users": 2
   },
   {
+    "connections": 87,
+    "domain": "mstdn.pondzu.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 141,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 436,
     "domain": "mstdn.poyo.me",
     "name": "mstdn.poyo.me",
@@ -8647,6 +9421,24 @@
     "statuses": 2298,
     "title": "Mastodon @ Poyo server",
     "users": 63
+  },
+  {
+    "connections": 156,
+    "domain": "mstdn.prfm.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 290,
+    "title": null,
+    "users": 35
+  },
+  {
+    "connections": 221,
+    "domain": "mstdn.res.ac",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 627,
+    "title": null,
+    "users": 16
   },
   {
     "connections": 385,
@@ -8709,6 +9501,15 @@
     "openRegistrations": false,
     "statuses": 60,
     "title": "mstdn.seitaro.me",
+    "users": 1
+  },
+  {
+    "connections": 242,
+    "domain": "mstdn.semnil.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 482,
+    "title": null,
     "users": 1
   },
   {
@@ -8910,6 +9711,15 @@
     "users": 121
   },
   {
+    "connections": 164,
+    "domain": "mstdn.uei.co.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 521,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 329,
     "domain": "mstdn.untan.xyz",
     "name": "mstdn.untan.xyz",
@@ -8955,6 +9765,15 @@
     "users": 10
   },
   {
+    "connections": 3,
+    "domain": "mstdn.wiuse.work",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 6,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 174,
     "domain": "mstdn.world",
     "name": "mstdn.world",
@@ -8962,6 +9781,24 @@
     "statuses": 98,
     "title": "Mastodon Go",
     "users": 18
+  },
+  {
+    "connections": 339,
+    "domain": "mstdn.yantene.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 590,
+    "title": null,
+    "users": 1
+  },
+  {
+    "connections": 8,
+    "domain": "mstdn.ybk28.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 44235,
+    "title": null,
+    "users": 17
   },
   {
     "connections": 324,
@@ -8988,6 +9825,15 @@
     "openRegistrations": false,
     "statuses": 15,
     "title": "\u9d09\u4e3c",
+    "users": 1
+  },
+  {
+    "connections": 68,
+    "domain": "mstdn.yumetomo.land",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 153,
+    "title": null,
     "users": 1
   },
   {
@@ -9043,6 +9889,15 @@
     "statuses": 15,
     "title": "Mastodon Girls",
     "users": 4
+  },
+  {
+    "connections": 4,
+    "domain": "mstdnrs.club",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 41,
+    "title": null,
+    "users": 1
   },
   {
     "connections": null,
@@ -9108,6 +9963,15 @@
     "users": 283
   },
   {
+    "connections": 10,
+    "domain": "murmur.masto.host",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 14,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 29,
     "domain": "musicdn.jp",
     "name": "musicdn.jp",
@@ -9160,6 +10024,15 @@
     "statuses": 241,
     "title": "myriad.social",
     "users": 19
+  },
+  {
+    "connections": 19,
+    "domain": "nadesiko-users.info",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 111,
+    "title": null,
+    "users": 16
   },
   {
     "connections": 288,
@@ -9223,6 +10096,15 @@
     "statuses": 52,
     "title": "Mastodon",
     "users": 10
+  },
+  {
+    "connections": 10,
+    "domain": "nejiamasi.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 76,
+    "title": null,
+    "users": 2
   },
   {
     "connections": 17,
@@ -9540,6 +10422,15 @@
     "users": 2
   },
   {
+    "connections": 35,
+    "domain": "obitsudon.midyuki.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 549,
+    "title": null,
+    "users": 5
+  },
+  {
     "connections": 1025,
     "domain": "oc.todon.fr",
     "name": "oc.todon.fr",
@@ -9603,6 +10494,15 @@
     "users": 9
   },
   {
+    "connections": 172,
+    "domain": "ojitabi.club",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 2868,
+    "title": null,
+    "users": 53
+  },
+  {
     "connections": 48,
     "domain": "oknwdn.com",
     "name": "oknwdn.com",
@@ -9657,6 +10557,15 @@
     "users": 5
   },
   {
+    "connections": 502,
+    "domain": "omochi.xyz",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 708,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 0,
     "domain": "omotesandon.com",
     "name": "omotesandon.com",
@@ -9673,6 +10582,15 @@
     "statuses": 11285,
     "title": "open2.ch",
     "users": 316
+  },
+  {
+    "connections": 117,
+    "domain": "oppai.tokyo",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 564,
+    "title": null,
+    "users": 43
   },
   {
     "connections": 772,
@@ -9700,6 +10618,15 @@
     "statuses": 857,
     "title": "oriwebdon.com",
     "users": 169
+  },
+  {
+    "connections": 120,
+    "domain": "orz.uno",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 68,
+    "title": null,
+    "users": 4
   },
   {
     "connections": 0,
@@ -9837,6 +10764,15 @@
     "users": 158
   },
   {
+    "connections": 705,
+    "domain": "otoya.space",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 19816,
+    "title": null,
+    "users": 1072
+  },
+  {
     "connections": 482,
     "domain": "oulipo.social",
     "name": "oulipo.social",
@@ -9844,6 +10780,15 @@
     "statuses": 8722,
     "title": "Oulipo.social",
     "users": 738
+  },
+  {
+    "connections": 4,
+    "domain": "owlparliament.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 16,
+    "title": null,
+    "users": 13
   },
   {
     "connections": 2,
@@ -9963,6 +10908,15 @@
     "users": 157798
   },
   {
+    "connections": 62,
+    "domain": "pcgame.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 1157,
+    "title": null,
+    "users": 24
+  },
+  {
     "connections": null,
     "domain": "pdt.m.to",
     "name": "pdt.m.to",
@@ -9990,6 +10944,15 @@
     "users": 33
   },
   {
+    "connections": 35,
+    "domain": "persadon.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 4,
+    "title": null,
+    "users": 2
+  },
+  {
     "connections": 397,
     "domain": "photodn.net",
     "name": "photodn.net",
@@ -10006,6 +10969,24 @@
     "statuses": 1600,
     "title": "Physi.cc Mastodon",
     "users": 38
+  },
+  {
+    "connections": null,
+    "domain": "pi.soykaf.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": null,
+    "title": null,
+    "users": null
+  },
+  {
+    "connections": 39,
+    "domain": "piano.masto.host",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 55,
+    "title": null,
+    "users": 12
   },
   {
     "connections": 122,
@@ -10026,6 +11007,15 @@
     "users": 44
   },
   {
+    "connections": null,
+    "domain": "pleroma.soykaf.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": null,
+    "title": null,
+    "users": null
+  },
+  {
     "connections": 58,
     "domain": "pochi46.com",
     "name": "pochi46.com",
@@ -10042,6 +11032,15 @@
     "statuses": 922,
     "title": "podcast.style",
     "users": 28
+  },
+  {
+    "connections": 266,
+    "domain": "poils.pachyderme.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 244,
+    "title": null,
+    "users": 14
   },
   {
     "connections": 339,
@@ -10062,6 +11061,15 @@
     "users": 4
   },
   {
+    "connections": 74,
+    "domain": "pom.masto.host",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 1706,
+    "title": null,
+    "users": 4
+  },
+  {
     "connections": 430,
     "domain": "porntoot.com",
     "name": "porntoot.com",
@@ -10069,6 +11077,24 @@
     "statuses": 2744,
     "title": "porntoot.com",
     "users": 217
+  },
+  {
+    "connections": null,
+    "domain": "postgrestodon.magicannon.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": null,
+    "title": null,
+    "users": null
+  },
+  {
+    "connections": 43,
+    "domain": "potaodon.audio",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 424,
+    "title": null,
+    "users": 43
   },
   {
     "connections": 174,
@@ -10080,6 +11106,15 @@
     "users": 9
   },
   {
+    "connections": 128,
+    "domain": "pouet.april.org",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 107,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 290,
     "domain": "pouet.chouech.org",
     "name": "pouet.chouech.org",
@@ -10087,6 +11122,15 @@
     "statuses": 17,
     "title": "pouet.chouech.org",
     "users": 1
+  },
+  {
+    "connections": 2,
+    "domain": "pouet.coazergues.info",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 149,
+    "title": null,
+    "users": 52
   },
   {
     "connections": 377,
@@ -10197,6 +11241,15 @@
     "users": 12
   },
   {
+    "connections": 156,
+    "domain": "prfm-mstdn.herokuapp.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 290,
+    "title": null,
+    "users": 35
+  },
+  {
     "connections": 90,
     "domain": "pridelands.io",
     "name": "pridelands.io",
@@ -10287,6 +11340,15 @@
     "users": 98
   },
   {
+    "connections": 336,
+    "domain": "rainyman.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 1577,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 275,
     "domain": "ramendon.jp",
     "name": "ramendon.jp",
@@ -10303,6 +11365,15 @@
     "statuses": 143,
     "title": "ranobe.net",
     "users": 27
+  },
+  {
+    "connections": 135,
+    "domain": "real-escape.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 60,
+    "title": null,
+    "users": 3
   },
   {
     "connections": 86,
@@ -10330,6 +11401,15 @@
     "statuses": 108,
     "title": "RedWombat.social",
     "users": 1
+  },
+  {
+    "connections": 87,
+    "domain": "remicck.club",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 409,
+    "title": null,
+    "users": 14
   },
   {
     "connections": 229,
@@ -10375,6 +11455,15 @@
     "statuses": 2094,
     "title": "Rich.GOP",
     "users": 154
+  },
+  {
+    "connections": 183,
+    "domain": "rikadon.club",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 304,
+    "title": null,
+    "users": 23
   },
   {
     "connections": 26,
@@ -10431,6 +11520,15 @@
     "users": 1
   },
   {
+    "connections": 77,
+    "domain": "s.brined.fish",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 48,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 319,
     "domain": "s.dat.cloud",
     "name": "s.dat.cloud",
@@ -10438,6 +11536,15 @@
     "statuses": 110,
     "title": "datsocial",
     "users": 1
+  },
+  {
+    "connections": 36,
+    "domain": "s.h7i.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 37,
+    "title": null,
+    "users": 2
   },
   {
     "connections": 199,
@@ -10546,6 +11653,15 @@
     "statuses": 571,
     "title": "Saunner",
     "users": 35
+  },
+  {
+    "connections": null,
+    "domain": "sc.fetus.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": null,
+    "title": null,
+    "users": null
   },
   {
     "connections": 155,
@@ -10728,6 +11844,15 @@
     "users": 40
   },
   {
+    "connections": 201,
+    "domain": "shintarokurachi.tokyo",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 69,
+    "title": null,
+    "users": 3
+  },
+  {
     "connections": 12,
     "domain": "shkval.net",
     "name": "shkval.net",
@@ -10771,6 +11896,24 @@
     "statuses": 4406,
     "title": "Mastodon",
     "users": 14
+  },
+  {
+    "connections": 561,
+    "domain": "sin.tyaku.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 1549,
+    "title": null,
+    "users": 6
+  },
+  {
+    "connections": 32,
+    "domain": "skett.masto.host",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 39,
+    "title": null,
+    "users": 1
   },
   {
     "connections": 67,
@@ -10845,6 +11988,15 @@
     "users": 204
   },
   {
+    "connections": 159,
+    "domain": "sns.ubnt-intrepid.nagoya",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 48,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 320,
     "domain": "soc.bckly.com",
     "name": "soc.bckly.com",
@@ -10852,6 +12004,15 @@
     "statuses": 58,
     "title": "soc.bckly.com",
     "users": 14
+  },
+  {
+    "connections": null,
+    "domain": "soc.beardyunixer.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": null,
+    "title": null,
+    "users": null
   },
   {
     "connections": 1070,
@@ -10879,6 +12040,15 @@
     "statuses": 1934,
     "title": "Mastodon",
     "users": 135
+  },
+  {
+    "connections": 207,
+    "domain": "social.01start.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 33,
+    "title": null,
+    "users": 2
   },
   {
     "connections": 249,
@@ -11007,6 +12177,15 @@
     "users": 22
   },
   {
+    "connections": 253,
+    "domain": "social.bzh",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 19,
+    "title": null,
+    "users": 8
+  },
+  {
     "connections": 2,
     "domain": "social.celabs.com",
     "name": "social.celabs.com",
@@ -11022,6 +12201,15 @@
     "openRegistrations": false,
     "statuses": 15,
     "title": "social.chronal.net",
+    "users": 1
+  },
+  {
+    "connections": 867,
+    "domain": "social.cloudfrancois.fr",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 605,
+    "title": null,
     "users": 1
   },
   {
@@ -11403,6 +12591,15 @@
     "users": 4599
   },
   {
+    "connections": 348,
+    "domain": "social.lovetux.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 390,
+    "title": null,
+    "users": 4
+  },
+  {
     "connections": 331,
     "domain": "social.magnier.io",
     "name": "social.magnier.io",
@@ -11556,6 +12753,15 @@
     "users": 9
   },
   {
+    "connections": 711,
+    "domain": "social.otya.me",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 617,
+    "title": null,
+    "users": 2
+  },
+  {
     "connections": 333,
     "domain": "social.oupsman.fr",
     "name": "social.oupsman.fr",
@@ -11617,6 +12823,15 @@
     "statuses": 140,
     "title": "Mastodon",
     "users": 2
+  },
+  {
+    "connections": 83,
+    "domain": "social.pueseso.club",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 362,
+    "title": null,
+    "users": 4
   },
   {
     "connections": 180,
@@ -12015,6 +13230,24 @@
     "users": 1
   },
   {
+    "connections": 64,
+    "domain": "stcpt.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 15,
+    "title": null,
+    "users": 2
+  },
+  {
+    "connections": 17,
+    "domain": "steamstdn.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 401,
+    "title": null,
+    "users": 23
+  },
+  {
     "connections": 8,
     "domain": "subculdon.com",
     "name": "subculdon.com",
@@ -12042,6 +13275,15 @@
     "users": 354
   },
   {
+    "connections": null,
+    "domain": "sungo.io",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": null,
+    "title": null,
+    "users": null
+  },
+  {
     "connections": 598,
     "domain": "sunshinegardens.org",
     "name": "sunshinegardens.org",
@@ -12058,6 +13300,15 @@
     "statuses": 41,
     "title": "super-famicom.com Mastodon",
     "users": 31
+  },
+  {
+    "connections": 100,
+    "domain": "support.m.to",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 485,
+    "title": null,
+    "users": 57
   },
   {
     "connections": 251,
@@ -12087,6 +13338,15 @@
     "users": 2
   },
   {
+    "connections": 79,
+    "domain": "t.aqn.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 103,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 389,
     "domain": "t.d65.xyz",
     "name": "t.d65.xyz",
@@ -12114,6 +13374,15 @@
     "users": 33
   },
   {
+    "connections": 15,
+    "domain": "taketodon.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 7167,
+    "title": null,
+    "users": 79
+  },
+  {
     "connections": 179,
     "domain": "tali.t0k.org",
     "name": "tali.t0k.org",
@@ -12123,6 +13392,15 @@
     "users": 1
   },
   {
+    "connections": 3,
+    "domain": "tamudon.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 57,
+    "title": null,
+    "users": 4
+  },
+  {
     "connections": 488,
     "domain": "taruntarun.net",
     "name": "taruntarun.net",
@@ -12130,6 +13408,15 @@
     "statuses": 1359,
     "title": "Mastodon - taruntarun.net",
     "users": 16
+  },
+  {
+    "connections": 13,
+    "domain": "taverne.portes-imaginaire.org",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 190,
+    "title": null,
+    "users": 31
   },
   {
     "connections": null,
@@ -12175,6 +13462,15 @@
     "statuses": 87,
     "title": "Mastodon",
     "users": 19
+  },
+  {
+    "connections": 109,
+    "domain": "tegedon.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 1247,
+    "title": null,
+    "users": 162
   },
   {
     "connections": 390,
@@ -12339,6 +13635,15 @@
     "users": 70
   },
   {
+    "connections": 21,
+    "domain": "tk2-234-26965.vs.sakura.ne.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 206,
+    "title": null,
+    "users": 2
+  },
+  {
     "connections": 481,
     "domain": "todon.nl",
     "name": "todon.nl",
@@ -12364,6 +13669,15 @@
     "statuses": 51,
     "title": "Tokyo.Mastodon",
     "users": 10
+  },
+  {
+    "connections": 3,
+    "domain": "tokyoidolfestival.m.to",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 18,
+    "title": null,
+    "users": 1
   },
   {
     "connections": null,
@@ -12474,6 +13788,15 @@
     "users": 1
   },
   {
+    "connections": 124,
+    "domain": "toot.iwh12.jp",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 367,
+    "title": null,
+    "users": 11
+  },
+  {
     "connections": 605,
     "domain": "toot.kashishokunin.com",
     "name": "toot.kashishokunin.com",
@@ -12508,6 +13831,15 @@
     "statuses": 307,
     "title": "toot.love",
     "users": 12
+  },
+  {
+    "connections": 183,
+    "domain": "toot.mastoc.fr",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 97,
+    "title": null,
+    "users": 2
   },
   {
     "connections": 144,
@@ -12553,6 +13885,15 @@
     "statuses": 11,
     "title": "Mastodon",
     "users": 1
+  },
+  {
+    "connections": 579,
+    "domain": "toot.place",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 117,
+    "title": null,
+    "users": 11
   },
   {
     "connections": 80,
@@ -12645,6 +13986,15 @@
     "users": 53
   },
   {
+    "connections": 106,
+    "domain": "tootin.tokyo",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 20,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 476,
     "domain": "tooting.intensifi.es",
     "name": "tooting.intensifi.es",
@@ -12679,6 +14029,15 @@
     "statuses": 59,
     "title": "Topbol",
     "users": 31
+  },
+  {
+    "connections": 1,
+    "domain": "toradon.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 1409,
+    "title": null,
+    "users": 41
   },
   {
     "connections": 334,
@@ -12843,6 +14202,24 @@
     "users": 5
   },
   {
+    "connections": 182,
+    "domain": "typlus.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 474,
+    "title": null,
+    "users": 27
+  },
+  {
+    "connections": 6,
+    "domain": "typrout.ml",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 887,
+    "title": null,
+    "users": 8
+  },
+  {
     "connections": 9,
     "domain": "ue4-mstdn.tokyo",
     "name": "ue4-mstdn.tokyo",
@@ -12868,6 +14245,15 @@
     "statuses": 64,
     "title": "Uldh\u00e5r",
     "users": 1
+  },
+  {
+    "connections": 32,
+    "domain": "ultima.gaia.ff14-mstdn.net",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 255,
+    "title": null,
+    "users": 39
   },
   {
     "connections": 18,
@@ -12951,6 +14337,15 @@
     "users": 3
   },
   {
+    "connections": 151,
+    "domain": "ushio.o-man.co",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 487,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 51,
     "domain": "utodon.jp",
     "name": "utodon.jp",
@@ -12958,6 +14353,15 @@
     "statuses": 8412,
     "title": "UTodon",
     "users": 228
+  },
+  {
+    "connections": 166,
+    "domain": "vapedon.club",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 7271,
+    "title": null,
+    "users": 334
   },
   {
     "connections": 276,
@@ -12976,6 +14380,15 @@
     "statuses": 1105,
     "title": "&quot;VA&quot;stodon",
     "users": 230
+  },
+  {
+    "connections": 61,
+    "domain": "vatican.kirinsan.org",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 291,
+    "title": null,
+    "users": 16
   },
   {
     "connections": 118,
@@ -13057,6 +14470,15 @@
     "statuses": 11585,
     "title": "The Vulpine Club",
     "users": 127
+  },
+  {
+    "connections": 146,
+    "domain": "w3c.social",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 64,
+    "title": null,
+    "users": 8
   },
   {
     "connections": 447,
@@ -13365,6 +14787,15 @@
     "users": 124
   },
   {
+    "connections": 59,
+    "domain": "xserver.work",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 195,
+    "title": null,
+    "users": 1
+  },
+  {
     "connections": 0,
     "domain": "yakiudon.club",
     "name": "yakiudon.club",
@@ -13401,6 +14832,24 @@
     "users": 12
   },
   {
+    "connections": 33,
+    "domain": "yamagadon.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 135,
+    "title": null,
+    "users": 4
+  },
+  {
+    "connections": 19,
+    "domain": "yamagatadon.com",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 143,
+    "title": null,
+    "users": 25
+  },
+  {
     "connections": 74,
     "domain": "yamast.com",
     "name": "yamast.com",
@@ -13408,6 +14857,15 @@
     "statuses": 22,
     "title": "\u30de\u30b9\u30c8\u30c9\u30f3\u5c71\u68a8",
     "users": 7
+  },
+  {
+    "connections": 149,
+    "domain": "yaskey.tokyo",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 293,
+    "title": null,
+    "users": 1
   },
   {
     "connections": 13,
@@ -13507,6 +14965,15 @@
     "statuses": 9,
     "title": "\u30dc\u30c3\u30c1\u5c02\u7528Mastodon",
     "users": 10
+  },
+  {
+    "connections": 84,
+    "domain": "yutacar.info",
+    "name": null,
+    "openRegistrations": null,
+    "statuses": 581,
+    "title": null,
+    "users": 2
   },
   {
     "connections": 364,
