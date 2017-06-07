@@ -431,7 +431,9 @@ function onPlayerReady(event) {
 }
 
 function youtubeError(err) {
-    globalErrorCount++;
+    if (err != 150) // we skip videos that are banned, not an error
+        globalErrorCount++;
+
     console.log("youtube error ", err.data);
     console.log(youtubePlayer.getVideoUrl())
     playNextVideo();
