@@ -474,7 +474,7 @@ function onPlayerStateChange(event) {
 
 //////////////////////
 function playNextVideo () {
-    
+    if (ImDead) return;
     /*
     if (playcount == 0) {
         playVideo(awooVid.songUrl);
@@ -516,6 +516,7 @@ function playNextVideo () {
 }
 
 function SkipIt() {
+    if (ImDead) return;
     launchTagGrabber()
     .then ( () => {
         playNextVideo()
@@ -523,6 +524,7 @@ function SkipIt() {
     
 }
 function Recycle() {
+    if (ImDead) return;
     localStorage.clear()
     loadPageStorage();
     launchTagGrabber().then(() => {playNextVideo()})
@@ -543,8 +545,21 @@ function errorWatcher() {
     }
     else {
         errorT=Date.now()
+        globalErrorCount = 0;
         setTimeout(errorWatcher, 5200)
     }
+}
+
+var furkYouJS
+function causeErrors(rate){ // debugging thing, type it in console
+    if (ImDead) return;
+    if (rate == undefined)
+        rate = furkYouJS
+    furkYouJS = rate
+    let timeout = (1/rate)*1000
+    console.log("causing error", timeout)
+    globalErrorCount++;
+    setTimeout(causeErrors, timeout)
 }
 
 window.onload = function () {
