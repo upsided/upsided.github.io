@@ -403,7 +403,7 @@ function musicWatcher(){
 
     }
     else {
-        // console.log("Youtube time ", youtubePlayer.getCurrentTime())
+                
         let elapsed = Date.now() - playStartTime
         if (elapsed > 30000) {
             let skipper = document.getElementById("skipbutton")
@@ -411,12 +411,32 @@ function musicWatcher(){
                 skipper.style.display = "inline-block"
             }
         }
-        if (elapsed > 60*6*1000) { // skip long stuff automatically
-            let skipLongStuff = document.getElementById("skiplongaudio")
-    
-            if (skipLongStuff == undefined || skipLongStuff.checked)
-                SkipIt();
+
+
+        let skipLongStuff = document.getElementById("skiplongaudio")
+        if (skipLongStuff == undefined) skipLongStuff = false;
+        else skipLongStuff = skipLongStuff.checked;
+            
+        if (skipLongStuff) {
+            let sc = document.getElementById("sc-widget")
+            var allArePaused = true;
+            if (sc!=undefined) {
+                sc = SC.Widget(sc)
+                sc.isPaused(function(paused) { if (!paused) allArePaused = false })
+            }
+
+            if (!(youtubePlayer.getPlayerState() == 2)) // not paused
+                allArePaused = false
+
+            if (allArePaused){
+                playStartTime = Date.now()
+            }
+            else if ( elapsed > 6*60*1000) { // skip long stuff automatically
+                console.log("skipping long stuff...")
+
+            }
         }
+
         
     }
     setTimeout(musicWatcher, 1000);
