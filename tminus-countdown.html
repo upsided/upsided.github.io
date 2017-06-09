@@ -33,6 +33,10 @@ text-align: center;
 #qrcode{
 display: inline-block;
 }
+#syncwarning {
+    font-size: 10pt;
+    text-align: center;
+}
 </style>
 <script src="qrcode.min.js"></script>
 <script>
@@ -40,17 +44,26 @@ var countdownAudio = new Audio('tMinus8.mp3');
 
 var TimeEnd = Date.now() + 10000;
 var soundTrigger
-var timeOffset
+var timeOffset = 0
 
 function getTimeOffset(){
-    var request = new XMLHttpRequest();
-    var promise = new Promise( function (fulfill, reject) {
-        let url = "minimal.html" // window.location.href
+    return probeTime(500)
+}
+
+
+function probeTime(ms){
+    let request = new XMLHttpRequest();
+    let promise = new Promise( function (fulfill, reject) {
+        // put a query string in there so ipad et al
+        // actually fetch the page instead of returning cached version
+        /// [sigh...]
+        let url = "minimal.html" + "?" + Date.now().toString() // window.location.href
         let before;
         console.log("\n\ngetting " + url);
         request.open('GET', url);
         request.setRequestHeader('Cache-Control', 'no-cache');
         request.onreadystatechange = function () {
+            console.log("ready state", request.readyState)
             if (request.readyState == 4){
                 if (request.status == 200){
                     // Date header describes lag between 
@@ -58,7 +71,12 @@ function getTimeOffset(){
                     let lag = now-before;
                     let pageDate = new Date(request.getResponseHeader("Date"))
                     let msTime = pageDate.getTime()
-                    let offset = (now - msTime) - lag
+                    let offset = (now - (msTime + lag/2))
+                    // total fudge to try to match real time (due to server 
+                    // providing seconds only) This is not needed for synchronizing
+                    // people together (precision), just to match the "real time" as understood
+                    // by the server (accuracy), which may or may not add value :shrug:
+                    // offset = Math.floor(offset - 463 ) ; 
 
                     console.log("lag", lag)
                     console.log("pageDate", pageDate)
@@ -78,11 +96,38 @@ function getTimeOffset(){
             }                
         }
         before=Date.now()
-        while (Date.now() % 1000 < 500)
-            before = Date.now()
+        // starting at different ms increases the precision of
+        // the HTTP date header (which is usually just seconds precision)
+        while ((before = Date.now()) % 1000 > ms)
+            ;
+        while ((before = Date.now()) % 1000 <= ms)
+            ;
         request.send();
+        console.log("sent")
     });
     return promise;
+}
+
+// this breaks in Chrome for some reason
+function getHardcoreOffset() {
+    var offset1, offset2, offset3, theOffset
+    return new Promise( (fulfill, reject) => {
+        probeTime(10)
+        .then (offset => {
+            console.log("1", offset)
+            offset1=offset;
+            return probeTime(500);})
+        .then (offset => {
+            offset2=offset 
+            console.log("2")
+            return probeTime(500);
+        })
+        .then (offset => {
+            console.log("3")
+            offset3=offset 
+            return Promise.resolve(Math.floor((offset1+offset2+offset3)/3))
+        })
+    })
 }
 
 function doQRCode () {
@@ -189,10 +234,53 @@ function textTo(element) {
     window.location = "sms:?&body=" + window.location
 }
 
+function syncWarning(secs) {
+    let warner = document.getElementById("syncwarning")
+    if (warner) {
+        warner.innerHTML=`<p>server time is out of sync by ${secs}s, using device clock</p>`
+    }
+}
+var pageStorage = {}
+function savePageStorage() {
+    if (typeof(Storage) !== "undefined") {
+        localStorage['tminus'] = JSON.stringify({'offset': timeOffset})
+    }
+}
+
+function loadPageStorage() {
+    if (typeof(Storage) !== "undefined") {
+        if (localStorage['tminus']){
+            pageStorage['tminus'] = JSON.parse(localStorage['tminus'])
+            if (pageStorage['tminus']['offset'] != undefined)
+                timeOffset = pageStorage['tminus']['offset']
+        }
+        else {
+            pageStorage['tminus'] = { 'offset': 0}
+            timeOffset = 0
+        }
+    }
+}
+
 window.onload = function () {
+    loadPageStorage()
     getTimeOffset()
     .then(offset => {
-        timeOffset = offset
+
+        console.log("gotten offset: ", offset)
+        // so some mobile devices freak out telling time
+        // --- just live with it if offset is too large
+        if (offset < 1000){
+            timeOffset = offset;
+        }
+        else
+        {
+            syncWarning(offset/1000)
+            // timeOffset = 0; // used saved value
+        }
+        
+        console.log("chosen offset: ", timeOffset)
+
+
         let res = parseURL()
         TimeEnd = res[0]
 
@@ -202,10 +290,14 @@ window.onload = function () {
         doQRCode()
         soundTrigger = getSoundTriggerTime(TimeEnd)
         setTimeout(update, 10);
-    })
+    }).then ( () => {
+            /*fucks up in Chrome too:
+             countdownAudio.play();
+             countdownAudio.pause();
+            */
+        savePageStorage()
+    });
     
-    countdownAudio.play();
-    countdownAudio.pause();
 
 }
 
@@ -221,7 +313,7 @@ window.onload = function () {
 <div id="title"></div>
 <div id="clock"><p class="clockdisplay">00:00:00.0</p></div>
 <div> 
-
+<div id="syncwarning"></div>
 <div class="wrapper">
 <div id="qrcode"></div>
 <div>
