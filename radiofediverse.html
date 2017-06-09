@@ -94,8 +94,7 @@ function loadPageStorage(){
 function savePageStorage() {
     if (typeof(Storage) !== "undefined") {
         //console.log("saving data...")
-        let temp = pageStorage;
-        temp.playlist= []
+        let temp = {'playlist': [], 'playedOnceVid': pageStorage.playedOnceVid, 'playedOnce': pageStorage.playedOnce};
         localStorage['radiofediverse'] = JSON.stringify(temp)
     }
 }
@@ -400,7 +399,8 @@ function launchTagGrabber() {
 var playStartTime = Date.now()
 function musicWatcher(){
     if (ImDead) return;
-    if (pageStorage.playlist.length == 0 || playcount % 10 == 0) {
+    if (pageStorage.playlist.length < 3 ) {
+        console.log("Playlist getting low, adding tunes", pageStorage.playlist.length)
         launchTagGrabber();
         /*
         for (let i in pageStorage.playlist) {
@@ -429,7 +429,10 @@ function musicWatcher(){
             var allArePaused = true;
             if (sc!=undefined) {
                 sc = SC.Widget(sc)
-                sc.isPaused(function(paused) { if (!paused) allArePaused = false })
+                sc.isPaused(function(paused) {
+                //console.log("soundcloud paused? ", paused)
+                 if (!paused) allArePaused = false }
+                )
             }
 
             if (!(youtubePlayer.getPlayerState() == 2)) // not paused
@@ -460,7 +463,7 @@ function pageSaver() {
 function musicGrabber(){
     if (ImDead) return
     launchTagGrabber();
-    //setTimeout(musicGrabber, 600000) // 10 mins
+    setTimeout(musicGrabber, 600000) // 10 mins
 }
 
 
@@ -534,6 +537,11 @@ function onPlayerStateChange(event) {
     else if (event.data == YT.PlayerState.PLAYING) {
         if (refreshingVid) return;
 
+        element = document.getElementById('sc-widget')
+        if (element != undefined) {
+            widget = SC.Widget(element)
+            widget.pause()
+        }
         /* now taken care of in musicWatcher 
         let d = youtubePlayer.getDuration();
         console.log("Duration: ", d)
@@ -636,7 +644,7 @@ function playNextVideo () {
             playVideo(next.songID, next.type);
         }
         else{
-            console.log("SKIPPING BECAUSE ALREADY HAD A CHANCE>>>", next)
+            console.log("SKIPPING BECAUSE ALREADY HAD A CHANCE>>>", next.songUrl)
             setTimeout(playNextVideo, 10);
         }
     }
@@ -937,7 +945,7 @@ p.errortext {
     </script>
 
     <div id="soundcloud_container">
-    <iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=" scrolling="no" style="display: none" frameborder="no"></iframe>
+    <iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=" scrolling="no"  style="display: none;" frameborder="no"></iframe>
     <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
     <script type="text/javascript">
       (function(){
