@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=yes" />
+
+<style>
+p.clockdisplay {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 20vw;
+    font-weight: bold;
+    text-align: center;
+}
+</style>
+
+<script>
+
+function goCount(element) {
+    let now = Date.now()
+    let t = element.getAttribute('data-countdown')
+    url = "./tminus-countdown.html#" + (now + parseInt(t))
+    window.location.href = url
+}
+window.onload = function() {
+}
+
+
+</script>
+<title>Countdown</title>
+</head>
+</body>
+<h1>T Minus</h1>
+<p>Synchronize with the Planet</p>
+<p>I want a countdown for:
+<ul>
+<li><a href="#" class='clocktime' onclick="goCount(this)" data-countdown='10000'>10 seconds</a></li>
+<li><a href="#" class='clocktime' onclick="goCount(this)" data-countdown='30000'>30 seconds</a></li>
+<li><a href="#" class='clocktime' onclick="goCount(this)" data-countdown='60000'>1 Minute</a></li>
+<li><a href="#" class='clocktime' onclick="goCount(this)" data-countdown='180000'>3 Minutes</a></li>
+<li><a href="#" class='clocktime' onclick="goCount(this)" data-countdown='300000'>5 Minutes</a></li>
+<li><a href="#" class='clocktime' onclick="goCount(this)" data-countdown='600000'>10 Minutes</a></li>
+<li><a href="#" class='clocktime' onclick="goCount(this)" data-countdown='900000'>15 Minutes</a></li>
+<li><a href="#" class='clocktime' onclick="goCount(this)" data-countdown='1800000'>30 Minutes</a></li>
+<li><a href="#" class='clocktime' onclick="goCount(this)" data-countdown='3600000'>1 Hour</a></li>
+</ul>
+
+<script>var audioElement = document.getElementById("clockaudio")
+</script>
+<div id="clock"></div>

@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=yes" />
+
+<style>
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    background-color: white;
+    color: black;
+}
+a {
+    color: #88a;
+    text-decoration: none;
+}
+p.clockdisplay {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 15vw;
+    line-height: 15vw;
+    font-weight: bold;
+    text-align: center;
+    margin:0;
+}
+#title{
+    font-size: 3vw;
+    line-height: 3vw;
+    text-align: center;
+}
+.wrapper{
+text-align: center;
+}
+#qrcode{
+display: inline-block;
+}
+</style>
+<script src="qrcode.min.js"></script>
+<script>
+var countdownAudio = new Audio('tMinus8.mp3');
+
+var TimeEnd = Date.now() + 10000;
+var soundTrigger
+var timeOffset
+
+function getTimeOffset(){
+    var request = new XMLHttpRequest();
+    var promise = new Promise( function (fulfill, reject) {
+        let url = "minimal.html" // window.location.href
+        let before;
+        console.log("\n\ngetting " + url);
+        request.open('GET', url);
+        request.setRequestHeader('Cache-Control', 'no-cache');
+        request.onreadystatechange = function () {
+            if (request.readyState == 4){
+                if (request.status == 200){
+                    // Date header describes lag between 
+                    let now = Date.now()
+                    let lag = now-before;
+                    let pageDate = new Date(request.getResponseHeader("Date"))
+                    let msTime = pageDate.getTime()
+                    let offset = (now - msTime) - lag
+
+                    console.log("lag", lag)
+                    console.log("pageDate", pageDate)
+                    console.log("browser", new Date())
+                    console.log("offset", offset)
+                    fulfill(offset);
+                }
+                else {
+                    if (request.status != 0){
+                        reject(["NETWORK ERR", "Error: status: " + request.status + "\n" + request.responseText])
+                    }
+                    else {
+                        reject(["BROWSER ERR", "Error: see console log"]);
+                    }
+                        
+                }                    
+            }                
+        }
+        before=Date.now()
+        while (Date.now() % 1000 < 500)
+            before = Date.now()
+        request.send();
+    });
+    return promise;
+}
+
+function doQRCode () {
+ new QRCode(document.getElementById("qrcode"), {
+    text: window.location.href,
+    width: 200,
+    height: 200,
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+});
+
+}
+function getSoundTriggerTime(endTime) {
+    //this depends on the timing of the clicks in the audio
+    return endTime - 8000
+}
+var hashParser = /^#(\d+)/
+var argsParser = /!(.+)$/
+function parseURL() {
+    let hash = location.hash
+    let time = 0
+    let args
+    let title = "T Minus"
+    
+    console.log("hash is: ", hash)
+    
+    let m = hashParser.exec(hash)
+    if (m != null) {
+        time = parseInt(m[1]) // int guaranteed due to \d+
+    }
+    console.log("time = ", time)
+    
+    args = argsParser.exec(hash)
+    if (args != null) {
+        title = decodeURI(args[1])
+    }    
+
+    if (time == 0) {
+        time = 300*1000 + Date.now()
+        setTimeout(function() {
+        
+            let w =   window.location.href
+            w = w.replace(/#/g, "")
+            w +=  "#" + time.toString()
+            console.log(w)
+            window.location = w
+            }, 10)
+    }
+
+    return [time + timeOffset, title]
+}
+function setTitle(title) {
+    let e = document.getElementById("title")
+    e.innerHTML = `<h1>${title}</h1>`
+    document.title = "T Minus: " + title
+}
+
+function playIt(){
+    countdownAudio.play();
+}
+function drawTime(timeLeft){ // in milliseconds
+    let theclock = document.getElementById("clock")
+    let floored = Math.floor(timeLeft/1000)
+    let t = Math.floor(timeLeft/100) % 10
+    let s = (floored % 60)
+    let m = ((floored - s)/60)  % 60
+    let h = Math.floor(floored/(60*60))
+    
+    if (s < 10) s = "0" + s.toString()
+    if (m < 10) m = "0" + m.toString()
+
+    theclock.innerHTML = `<p class="clockdisplay">${h}:${m}:${s}.${t}</p>`
+
+}
+
+function update(){
+    let now = Date.now()
+    let timeLeft = TimeEnd - Date.now()
+    if (timeLeft < 0) // we're done
+        return
+    
+    drawTime(timeLeft)
+    
+
+    if (now + 100 > soundTrigger) {
+        if (now < soundTrigger) {
+            // now it's time to do a tight loop
+            while (Date.now() < soundTrigger) {
+                timeLeft = TimeEnd - Date.now()
+                drawTime(timeLeft);
+            }
+            countdownAudio.play();
+        }
+    }
+    setTimeout(update, 10);
+}
+
+function mailto(element) {
+    window.location = "mailto:?subject=Countdown&body=" + window.location
+}
+
+function textTo(element) {
+    window.location = "sms:?&body=" + window.location
+}
+
+window.onload = function () {
+    getTimeOffset()
+    .then(offset => {
+        timeOffset = offset
+        let res = parseURL()
+        TimeEnd = res[0]
+
+        let title = res[1]
+        setTitle(title)
+
+        doQRCode()
+        soundTrigger = getSoundTriggerTime(TimeEnd)
+        setTimeout(update, 10);
+    })
+    
+    countdownAudio.play();
+    countdownAudio.pause();
+
+}
+
+</script>
+<title>Countdown</title>
+</head>
+</body>
+<audio id="clockaudio" preload="auto"  >
+<source  src="tMinus8.mp3" type="audio/mp3">
+</audio>
+<script>var audioElement = document.getElementById("clockaudio")
+</script>
+<div id="title"></div>
+<div id="clock"><p class="clockdisplay">00:00:00.0</p></div>
+<div> 
+
+<div class="wrapper">
+<div id="qrcode"></div>
+<div>
+<a onclick="mailto(this)" href="#">Email it</a> | <a href="tminus.html">New...</a>
+</div>
+</div>
+</div>
