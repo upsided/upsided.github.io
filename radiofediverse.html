@@ -63,6 +63,13 @@ function elementSet(elementID, html) {
 
 var pageStorage = {'playlist': [], 'playedOnceVid': {}, 'playedOnce': {}}
 //localStorage.clear()
+function clearCache() {
+    // keep the playlist?
+   // pageStorage['playlist'] = []
+    pageStorage['playedOnceVid'] = {}
+    pageStorage['playedOnce'] = {}
+    savePageStorage()
+}
 
 function loadPageStorage(){
     pageStorage = {}
@@ -553,6 +560,8 @@ function onPlayerStateChange(event) {
 // fire because the element has been replaced, and the old references point to nothing
 // (INSERT DUH HERE)
 function rebindSoundCloud() {
+    if (ImDead) return;
+
     var widgetIframe = document.getElementById('sc-widget'),
         widget       = SC.Widget(widgetIframe);
 
@@ -638,6 +647,7 @@ function playNextVideo () {
 
 
 function playVideo(id, type) {
+    if (ImDead) return;
     let element, widget
     playcount++
     console.log("PlayVideo() ", type, id)   
@@ -666,6 +676,7 @@ function playVideo(id, type) {
             //element.style.width = "1px"
             //element.style.height = "1px"
             youtubePlayer.setSize(1,1)
+            element.style.display = "none"
             youtubePlayer.pauseVideo()
         }
 
@@ -935,7 +946,7 @@ p.errortext {
 </div>
 <div id="domainname"><p style="text-align: center">Loading...</p></div> 
 </div>
-<div id="audiolimits"><input id="skiplongaudio" type="checkbox" checked>Limit Audio to 6 minutes</input></div>
+<div id="audiolimits"><input id="skiplongaudio" type="checkbox" checked>Limit Audio to 6 minutes</input><br/> <input id="clearcache" type="button" value="Clear Cache" onclick="clearCache()"></input></div>
 <div id="controlbar"><p style="text-align: right; "> <span style="cursor: pointer; display: none;" onclick="Recycle()">♲  </span><span id="skipbutton" style="cursor: pointer;" onclick="SkipIt()">☞</span></p></div>
 
 <div id="errorlog"></div>
