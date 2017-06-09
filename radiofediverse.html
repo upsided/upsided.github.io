@@ -580,6 +580,8 @@ function rebindSoundCloud() {
     widget.bind(SC.Widget.Events.ERROR, function(err) {
         globalErrorCount++;
         console.log("SOUNDCLOUD ERROR: ", err)
+        widget.pause()
+
         playNextVideo();
     });
     
