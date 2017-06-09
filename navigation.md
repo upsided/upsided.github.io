@@ -4,7 +4,7 @@
  
  * [Tag Whisperer](./tagwhisperer.html)
  * [Non Sequitur Stream](./nuggets.html)
- * [Fediverse Photobook](./photobook.html)
+ * [Fediverse Gallery](./artgallery.html)
  * [Radio Fediverse](./radiofediverse.html)
 
 [General Toys]()
