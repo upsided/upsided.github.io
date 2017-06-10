@@ -207,9 +207,9 @@ function loadPageStorage(){
 
 function savePageStorage() {
     if (typeof(Storage) !== "undefined") {
-        //console.log("saving data...")
-        let temp = pageStorage
-        temp['playlist'] = [] // clear to save space
+        console.log("saving data...", pageStorage)
+        let temp = {'playlist':[], 'playedOnce':pageStorage['playedOnce']}
+        //temp['playlist'] = [] // clear to save space
         localStorage[STORAGE_KEY] = JSON.stringify(temp)
     }
 }
@@ -358,7 +358,7 @@ function addArt(toot, tag) {
         }
            let d = {}
         d['tootUrl'] = tootUrl
-        d['mediaUrl'] = media.remote_url
+        d['mediaUrl'] = media.url //media.remote_url
         d['domain'] = domain
         d['media'] = media[m]
         d['tag'] = tag
@@ -551,8 +551,8 @@ function displaySlide(item) {
 
         
     try{
-      picWidth = mediaObject.meta.small.width
-      picHeight = mediaObject.meta.small.height
+      picWidth = mediaObject.meta.original.width
+      picHeight = mediaObject.meta.original.height
     }
     catch (err){
         //console.log(err);
@@ -574,7 +574,7 @@ function displaySlide(item) {
         theimage.width = picWidth;
         theimage.height = picHeight;
         */
-        tootContent.innerHTML= '<p style="text-align: center;"><a href="https://' + theDomain + '/about"><img id="theimage" src="' + mediaObject.preview_url + '"></img></a></p>'
+        tootContent.innerHTML= '<p style="text-align: center;"><a href="' + mediaObject.url + '"><img id="theimage" src="' + mediaObject.preview_url + '"></img></a></p>'
         //titleDiv.innerHTML = '<a href="https://' + theDomain + '/about/more">' + theDomain + "</a> #" + tag;
         titleDiv.innerHTML = `<h3 style="text-align: center"><a href="https://${theDomain}/about/more" target="_blank">${theDomain}</a> #${tag}</h3>`
 
