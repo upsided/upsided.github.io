@@ -415,7 +415,7 @@ function launchTagGrabber() {
     let tags = ["art", "drawing", "mastoart", "painting", "sketch", "dessin", "スケッチ", "イラスト"]
     console.log("adding some art with tags")
     for (let t in tags) {
-        let p = tagGrabber(instances[instance], tags[t])
+        let p = tagGrabber(pickDomain(), tags[t])
         promesitas.push(p)
     }
     
@@ -515,7 +515,7 @@ function playNextSlide () {
 //////////////////
 function pickDomain() {
     var index = Math.floor(Math.random()*instances.length);
-    return instances[index]['domain'];
+    return instances[index];
 }
 
 function extractMedia(toot) {
