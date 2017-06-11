@@ -3,7 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=yes" />
+<script src="./promitto.min.js"></script>
 <script>
+if (typeof(Promise) === "undefined") {
+    Promise = promitto.Promise
+}
 
 /* Radio Fediverse */
 /* Play the stuff that people love on mastodon */
@@ -53,9 +57,9 @@ for (i in domainData) {
 // convenience. If elementID does not exist, do nothing,
 // otherwise set its html
 function elementSet(elementID, html) {
-    let element = document.getElementById(elementID)
-    if (element != undefined) {
-        element.innerHTML = html;
+    var e = document.getElementById(elementID)
+    if (e != undefined) {
+        e.innerHTML = html;
         return true;
     }
     return false;
@@ -79,7 +83,7 @@ function loadPageStorage(){
     if (typeof(Storage) !== "undefined") {
         // Code for localStorage/sessionStorage.
         if (localStorage['radiofediverse'] != undefined ) {
-            let temp = JSON.parse(localStorage['radiofediverse'])
+            var temp = JSON.parse(localStorage['radiofediverse'])
             if (temp.playedOnceVid != undefined) {
                 pageStorage.playedOnceVid= temp.playedOnceVid
             }
@@ -94,7 +98,7 @@ function loadPageStorage(){
 function savePageStorage() {
     if (typeof(Storage) !== "undefined") {
         //console.log("saving data...")
-        let temp = {'playlist': [], 'playedOnceVid': pageStorage.playedOnceVid, 'playedOnce': pageStorage.playedOnce};
+        var temp = {'playlist': [], 'playedOnceVid': pageStorage.playedOnceVid, 'playedOnce': pageStorage.playedOnce};
         localStorage['radiofediverse'] = JSON.stringify(temp)
     }
 }
@@ -162,8 +166,8 @@ function promiseRequest(jsonData, url) {
 function recursiveRequest(jsonList, url, countsDeep) {
     return promiseRequest(jsonList,url)
     .then(function (result) {
-        let jsonData =  result[0];
-        let nextURL =  result[1];
+        var jsonData =  result[0];
+        var nextURL =  result[1];
         
         // if we're done, return a resolved promise with the data
         if (nextURL == null || countsDeep >= MaxTootDownload || jsonData.length == 0){
@@ -195,8 +199,8 @@ function extractDomain (uriTag) {
 // FIXME: accts at the same domain as fetch won't have the @domain.social part
 // soooooo very silly, but still, FIXME
 function extractDomainFromAcct(acct) { // acct in form "upside@octodon.social"
-    let pat = /.+@([^@]+)$/
-    let found = pat.exec(acct)
+    var pat = /.+@([^@]+)$/
+    var found = pat.exec(acct)
 
     if (found == null){
         //console.log("Couldn't parse url for acct: ", acct)
@@ -208,14 +212,14 @@ function extractDomainFromAcct(acct) { // acct in form "upside@octodon.social"
 // add any found music links inside the toot to the playlist
 
 function addMusic(toot, tag) {
-    let tootUrl = toot['url']
+    var tootUrl = toot['url']
     
     if (pageStorage.playedOnce[tootUrl] != undefined) {
         //console.log("skipping already played from ", tootUrl); 
         return;
     }
 
-    let domain = extractDomainFromAcct(toot['account']['acct'])
+    var domain = extractDomainFromAcct(toot['account']['acct'])
     
     //try from url
     if (domain == null) {
@@ -225,18 +229,18 @@ function addMusic(toot, tag) {
         {console.log("unparsable domain from ", toot['url']); return;}
     }
     
-    let vidLinks = findLinks(toot['content'])
+    var vidLinks = findLinks(toot['content'])
     if (vidLinks.length == 0) {
         // console.log("no music inside a toot from ", domain); 
         //console.log(toot['content'])
         return;}
    
-    for (let i in vidLinks) {
-        let link = processUrl(vidLinks[i])
+    for (var i in vidLinks) {
+        var link = processUrl(vidLinks[i])
        // if (link != null && link['type'] == 'soundcloud') {
         if (link != null) {
              //console.log("Your added media is: ", link)
-            let d = {}
+            var d = {}
             d['tootUrl'] = tootUrl
             d['domain'] = domain
             d['songUrl'] = link['url']
@@ -258,8 +262,8 @@ var extractID2 = /watch\?v=((\w|\d|-)+)/
 
 var linkPat = /<a href="(https:\/\/[^"]+)"[^>]+/g
 function findLinks(tootContent) {
-    let m;
-    let urllist = []
+    var m;
+    var urllist = []
     
     while ( (m = linkPat.exec(tootContent)) ){
         urllist.push(m[1])
@@ -280,7 +284,7 @@ function processUrl(url) {
  // example: https://soundcloud.com/yanasoule/brovi
 var soundcloudFormCheck = /\/\/soundcloud.com\/[^/]+\/.*$/
 function processSoundCloudUrl(url) {
-    let  d = {'type':'soundcloud'}
+    var  d = {'type':'soundcloud'}
     if (!soundcloudFormCheck.test(url)) return null;
     
     //console.log("Adding soundcloudURL ", url)
@@ -293,20 +297,20 @@ var youtubeFormCheck = /\/\/[^/]*youtube\.com\/watch\?v=((\w|\d|-){11})([^\w\d-]
 var youtuBEFormCheck = /\/\/[^/]*youtu\.be\/((\w|\d|-){11})$/
 
 function processYouTubeUrl(url) {
-    let id;
+    var id;
     if (youtubeFormCheck.test(url)) {
-        let result =  youtubeFormCheck.exec(url)
+        var result =  youtubeFormCheck.exec(url)
         id = result[1]
     }
     else if(youtuBEFormCheck.test(url)) {
-        let result = youtuBEFormCheck.exec(url)
+        var result = youtuBEFormCheck.exec(url)
         id = result[1]
     }
     
     if (id != undefined) {
-        let d = {'type': 'youtube'}
+        var d = {'type': 'youtube'}
         d['id'] = id
-        d['url'] = `https://www.youtube.com/embed/${id}`
+        d['url'] = 'https://www.youtube.com/embed/' + id
         return d
     }
 
@@ -314,7 +318,7 @@ function processYouTubeUrl(url) {
 }
 
 function extractYoutubeID(httpslink) {
-    let res = extractID2.exec(httpslink)
+    var res = extractID2.exec(httpslink)
     if (res == null) {
         console.log("Can't munge youtube provided URL ", httpslink)
         return null
@@ -332,7 +336,7 @@ function tagGrabber (domain, tag) {
     .then( function (result) { 
         var tootlist = result[0];
         if (tootlist != undefined && tootlist.length > 0){
-            for (let i in tootlist) {
+            for (var i in tootlist) {
                 addMusic(tootlist[i], tag)
             }
         }
@@ -346,9 +350,9 @@ function tagGrabber (domain, tag) {
 
         // Just log it, and blacklist the domain for this session.
         console.log(err)
-        console.log(`adding ${domain} to blacklist due to network error`)
+        console.log('adding ' + domain +' to blacklist due to network error')
         blacklist[domain] = true;
-        elementSet('errorlog', `<p class="errortext">${err[1]}</p>`)
+        elementSet('errorlog', '<p class="errortext">' + err[1] + '</p>')
         globalErrorCount++;
         if (ImDead) throw new Error("whatevs")
         
@@ -356,11 +360,11 @@ function tagGrabber (domain, tag) {
 }
 
 function pickDomain() {
-    let instance;
-    let tries = 0;
+    var instance;
+    var tries = 0;
      while (instance == undefined){
         tries++;
-        let i = Math.floor(Math.random()*instances.length)
+        var i = Math.floor(Math.random()*instances.length)
         if (! blacklist[instances[i]] || tries > 100)
             instance = instances[i];
     }
@@ -371,16 +375,16 @@ function launchTagGrabber() {
     var instance;
     var tries = 0
 
-    let promesitas = []
-    let tags = ["mastomusic", "pouetradio", "tootradio", "nowplaying", "np", "nowlistening"]
+    var promesitas = []
+    var tags = ["mastomusic", "pouetradio", "tootradio", "nowplaying", "np", "nowlistening"]
     console.log("adding some music with tags")
-    for (let t in tags) {
-        let p = tagGrabber(pickDomain(), tags[t])
+    for (var t in tags) {
+        var p = tagGrabber(pickDomain(), tags[t])
         promesitas.push(p)
     }
     
     return Promise.all(promesitas)
-    .then(() => {
+    .then(function () {
         // newest first
         pageStorage.playlist.sort(function(a,b) {return a['created_at'] >= b['created_at'] ? -1 : 1;})
         //playlist = playlist.slice(0,20) // slice is important to force a refresh & get new stuff
@@ -388,7 +392,7 @@ function launchTagGrabber() {
         // playlist.sort(function(a,b) {return a['created_at'] <= b['created_at'] ? -1 : 1;})
            // debug sort
            /*
-            for (let i in playlist) {
+            for (var i in playlist) {
                 console.log(pageStorage.playlist[i]['created_at'])
             }
             */
@@ -403,7 +407,7 @@ function musicWatcher(){
         console.log("Playlist getting low, adding tunes", pageStorage.playlist.length)
         launchTagGrabber();
         /*
-        for (let i in pageStorage.playlist) {
+        for (var i in pageStorage.playlist) {
             console.log("Created: ", pageStorage.playlist[i]['created_at'], " #", pageStorage.playlist[i]['tag'])
         }
         */
@@ -411,21 +415,21 @@ function musicWatcher(){
     }
     else {
                 
-        let elapsed = Date.now() - playStartTime
+        var elapsed = Date.now() - playStartTime
         if (elapsed > 30000) {
-            let skipper = document.getElementById("skipbutton")
+            var skipper = document.getElementById("skipbutton")
             if (skipper != undefined) {
                 skipper.style.display = "inline-block"
             }
         }
 
 
-        let skipLongStuff = document.getElementById("skiplongaudio")
+        var skipLongStuff = document.getElementById("skiplongaudio")
         if (skipLongStuff == undefined) skipLongStuff = false;
         else skipLongStuff = skipLongStuff.checked;
             
         if (skipLongStuff) {
-            let sc = document.getElementById("sc-widget")
+            var sc = document.getElementById("sc-widget")
             var allArePaused = true;
             if (sc!=undefined) {
                 sc = SC.Widget(sc)
@@ -434,9 +438,13 @@ function musicWatcher(){
                  if (!paused) allArePaused = false }
                 )
             }
-
-            if (!(youtubePlayer.getPlayerState() == 2)) // not paused
-                allArePaused = false
+            try {
+                if (!(youtubePlayer.getPlayerState() == 2)) // not paused
+                    allArePaused = false
+            }catch(err) {
+                // just skip
+                console.log(err)
+            }
 
             if (allArePaused){
                 playStartTime = Date.now()
@@ -543,12 +551,12 @@ function onPlayerStateChange(event) {
             widget.pause()
         }
         /* now taken care of in musicWatcher 
-        let d = youtubePlayer.getDuration();
+        var d = youtubePlayer.getDuration();
         console.log("Duration: ", d)
         if (d > 360) {
             console.log("too long, shortening to 6 minutes....")
             refreshingVid = true;
-            let id = extractYoutubeID(youtubePlayer.getVideoUrl())
+            var id = extractYoutubeID(youtubePlayer.getVideoUrl())
             console.log(id)
             youtubePlayer.loadVideoById( {
                 'videoId': id,
@@ -620,7 +628,7 @@ function playNextVideo () {
 
     
     // hide the skip button
-    let skipper = document.getElementById("skipbutton")
+    var skipper = document.getElementById("skipbutton")
     if (skipper != undefined) {
         skipper.style.display = "none"
     }
@@ -630,10 +638,10 @@ function playNextVideo () {
     }
     
     if (pageStorage.playlist.length > 0) {
-        let next = pageStorage.playlist.shift()
-        let domainDiv = document.getElementById("domainname")
+        var next = pageStorage.playlist.shift()
+        var domainDiv = document.getElementById("domainname")
         if (domainDiv != undefined) {
-            domainDiv.innerHTML = `<h3 style="text-align: center"><a href="https://${next['domain']}/about/more" target="_blank">${next['domain']}</a> #${next['tag']}</h3>`
+            domainDiv.innerHTML = '<h3 style="text-align: center"><a href="https://'+ next['domain'] + '/about/more" target="_blank">' + next['domain'] + '</a> #' + next['tag'] + '</h3>'
         }
 
         // one link allowed per toot, and play that link once
@@ -658,7 +666,7 @@ function playNextVideo () {
 
 function playVideo(id, type) {
     if (ImDead) return;
-    let element, widget
+    var element, widget
     playcount++
     console.log("PlayVideo() ", type, id)   
     if (type == 'youtube') {
@@ -715,7 +723,7 @@ function playVideo(id, type) {
 function SkipIt() {
     if (ImDead) return;
     launchTagGrabber()
-    .then ( () => {
+    .then ( function() {
         playNextVideo()
     });
     
@@ -724,14 +732,14 @@ function Recycle() {
     if (ImDead) return;
     localStorage.clear()
     loadPageStorage();
-    launchTagGrabber().then(() => {playNextVideo()})
+    launchTagGrabber().then(function() {playNextVideo()})
 }
 
 var errorT = Date.now()
 function errorWatcher() {
-    let elapsed =  Date.now() - errorT
+    var elapsed =  Date.now() - errorT
     
-    let rate = 1000*globalErrorCount/(elapsed)
+    var rate = 1000*globalErrorCount/(elapsed)
     console.log("#Errors per second: ", rate)
     
     if (rate > 3) {
@@ -753,7 +761,7 @@ function causeErrors(rate){ // debugging thing, type it in console
     if (rate == undefined)
         rate = furkYouJS
     furkYouJS = rate
-    let timeout = (1/rate)*1000
+    var timeout = (1/rate)*1000
     console.log("causing error", timeout)
     globalErrorCount++;
     setTimeout(causeErrors, timeout)
