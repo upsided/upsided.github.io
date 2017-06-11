@@ -38,8 +38,13 @@ display: inline-block;
     text-align: center;
 }
 </style>
+<script src="./promitto.min.js"></script>
 <script src="qrcode.min.js"></script>
 <script>
+if (typeof(Promise) === "undefined") {
+    Promise = promitto.Promise
+}
+
 var countdownAudio = new Audio('tMinus8.mp3');
 
 var TimeEnd = Date.now() + 10000;
@@ -52,13 +57,13 @@ function getTimeOffset(){
 
 
 function probeTime(ms){
-    let request = new XMLHttpRequest();
-    let promise = new Promise( function (fulfill, reject) {
+    var request = new XMLHttpRequest();
+    var promise = new Promise( function (fulfill, reject) {
         // put a query string in there so ipad et al
         // actually fetch the page instead of returning cached version
         /// [sigh...]
-        let url = "minimal.html" + "?" + Date.now().toString() // window.location.href
-        let before;
+        var url = "minimal.html" + "?" + Date.now().toString() // window.location.href
+        var before;
         console.log("\n\ngetting " + url);
         request.open('GET', url);
         request.setRequestHeader('Cache-Control', 'no-cache');
@@ -67,11 +72,11 @@ function probeTime(ms){
             if (request.readyState == 4){
                 if (request.status == 200){
                     // Date header describes lag between 
-                    let now = Date.now()
-                    let lag = now-before;
-                    let pageDate = new Date(request.getResponseHeader("Date"))
-                    let msTime = pageDate.getTime()
-                    let offset = (now - (msTime + lag/2))
+                    var now = Date.now()
+                    var lag = now-before;
+                    var pageDate = new Date(request.getResponseHeader("Date"))
+                    var msTime = pageDate.getTime()
+                    var offset = (now - (msTime + lag/2))
                     // total fudge to try to match real time (due to server 
                     // providing seconds only) This is not needed for synchronizing
                     // people together (precision), just to match the "real time" as understood
@@ -111,18 +116,18 @@ function probeTime(ms){
 // this breaks in Chrome for some reason
 function getHardcoreOffset() {
     var offset1, offset2, offset3, theOffset
-    return new Promise( (fulfill, reject) => {
+    return new Promise( function (fulfill, reject) {
         probeTime(10)
-        .then (offset => {
+        .then (function(offset) {
             console.log("1", offset)
             offset1=offset;
             return probeTime(500);})
-        .then (offset => {
+        .then (function(offset) {
             offset2=offset 
             console.log("2")
             return probeTime(500);
         })
-        .then (offset => {
+        .then (function(offset)  {
             console.log("3")
             offset3=offset 
             return Promise.resolve(Math.floor((offset1+offset2+offset3)/3))
@@ -148,14 +153,14 @@ function getSoundTriggerTime(endTime) {
 var hashParser = /^#(\d+)/
 var argsParser = /!(.+)$/
 function parseURL() {
-    let hash = location.hash
-    let time = 0
-    let args
-    let title = "T Minus"
+    var hash = location.hash
+    var time = 0
+    var args
+    var title = "T Minus"
     
     console.log("hash is: ", hash)
     
-    let m = hashParser.exec(hash)
+    var m = hashParser.exec(hash)
     if (m != null) {
         time = parseInt(m[1]) // int guaranteed due to \d+
     }
@@ -170,7 +175,7 @@ function parseURL() {
         time = 300*1000 + Date.now()
         setTimeout(function() {
         
-            let w =   window.location.href
+            var w =   window.location.href
             w = w.replace(/#/g, "")
             w +=  "#" + time.toString()
             console.log(w)
@@ -181,8 +186,8 @@ function parseURL() {
     return [time + timeOffset, title]
 }
 function setTitle(title) {
-    let e = document.getElementById("title")
-    e.innerHTML = `<h1>${title}</h1>`
+    var e = document.getElementById("title")
+    e.innerHTML = "<h1>" + title + "</h1>"
     document.title = "T Minus: " + title
 }
 
@@ -190,23 +195,23 @@ function playIt(){
     countdownAudio.play();
 }
 function drawTime(timeLeft){ // in milliseconds
-    let theclock = document.getElementById("clock")
-    let floored = Math.floor(timeLeft/1000)
-    let t = Math.floor(timeLeft/100) % 10
-    let s = (floored % 60)
-    let m = ((floored - s)/60)  % 60
-    let h = Math.floor(floored/(60*60))
+    var theclock = document.getElementById("clock")
+    var floored = Math.floor(timeLeft/1000)
+    var t = Math.floor(timeLeft/100) % 10
+    var s = (floored % 60)
+    var m = ((floored - s)/60)  % 60
+    var h = Math.floor(floored/(60*60))
     
     if (s < 10) s = "0" + s.toString()
     if (m < 10) m = "0" + m.toString()
 
-    theclock.innerHTML = `<p class="clockdisplay">${h}:${m}:${s}.${t}</p>`
+    theclock.innerHTML = '<p class="clockdisplay">' + h +':' + m + ':' + s + ':' + t + '</p>'
 
 }
 
 function update(){
-    let now = Date.now()
-    let timeLeft = TimeEnd - Date.now()
+    var now = Date.now()
+    var timeLeft = TimeEnd - Date.now()
     if (timeLeft < 0) // we're done
         return
     
@@ -235,9 +240,9 @@ function textTo(element) {
 }
 
 function syncWarning(secs) {
-    let warner = document.getElementById("syncwarning")
+    var warner = document.getElementById("syncwarning")
     if (warner) {
-        warner.innerHTML=`<p>server time is out of sync by ${secs}s, using device clock</p>`
+        warner.innerHTML='<p>server time is out of sync by ' + secs +'s, using device clock</p>'
     }
 }
 var pageStorage = {}
@@ -264,7 +269,7 @@ function loadPageStorage() {
 window.onload = function () {
     loadPageStorage()
     getTimeOffset()
-    .then(offset => {
+    .then(function(offset){
 
         console.log("gotten offset: ", offset)
         // so some mobile devices freak out telling time
@@ -281,16 +286,16 @@ window.onload = function () {
         console.log("chosen offset: ", timeOffset)
 
 
-        let res = parseURL()
+        var res = parseURL()
         TimeEnd = res[0]
 
-        let title = res[1]
+        var title = res[1]
         setTitle(title)
 
         doQRCode()
         soundTrigger = getSoundTriggerTime(TimeEnd)
         setTimeout(update, 10);
-    }).then ( () => {
+    }).then ( function () {
             /*fucks up in Chrome too:
              countdownAudio.play();
              countdownAudio.pause();

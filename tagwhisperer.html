@@ -3,7 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=yes" />
+
+<script src="./promitto.min.js"></script>
 <script>
+if (typeof(Promise) === "undefined") {
+    Promise = promitto.Promise
+}
 
 /* MIT license, enjoy. Please talk to @upside@octodon.social if you have comments! */
 
@@ -42,7 +47,7 @@ for (i in domainData) {
 // convenience. If elementID does not exist, do nothing,
 // otherwise set its html
 function elementSet(elementID, html) {
-    let element = document.getElementById(elementID)
+    var element = document.getElementById(elementID)
     if (element != undefined) {
         element.innerHTML = html;
         return true;
@@ -110,8 +115,8 @@ function promiseRequest(jsonData, url) {
 function recursiveRequest(jsonList, url, countsDeep) {
     return promiseRequest(jsonList,url)
     .then(function (result) {
-        let jsonData =  result[0];
-        let nextURL =  result[1];
+        var jsonData =  result[0];
+        var nextURL =  result[1];
         
         // if we're done, return a resolved promise with the data
         if (nextURL == null || countsDeep >= MaxTootDownload || jsonData.length == 0){
@@ -162,8 +167,8 @@ function addTag(tagname, url) {
 }
 
 function isBot(toot) {
-    let pat = /TrendingBot/
-    let acct = toot['account']['acct']
+    var pat = /TrendingBot/
+    var acct = toot['account']['acct']
     if (pat.exec(acct) == null)
         return false;
     
@@ -183,7 +188,7 @@ function tagGrabber (domain, tag) {
     return recursiveRequest(jsonList, url+"?limit=40", 1)
     .then( function (result) { 
         var tootlist = result[0];
-        for (let i in tootlist) {
+        for (var i in tootlist) {
             if (! isBot(tootlist[i]))
                 addTag(tag, tootlist[i]['url'])
         }
@@ -197,9 +202,9 @@ function tagGrabber (domain, tag) {
 
         // Just log it, and blacklist the domain for this session.
         console.log(err)
-        console.log(`adding ${domain} to blacklist due to network error`)
+        console.log( 'adding ' + domain + ' to blacklist due to network error')
         blacklist[domain] = true;
-        elementSet('errorlog', `<p class="errortext">${err[1]}</p>`)
+        elementSet('errorlog', '<p class="errortext">' +err[1]+ '</p>')
         
     })
 
@@ -301,7 +306,7 @@ function launchTagGrabber(searchterm) {
     var tries = 0
      while (instance == undefined){
         tries++;
-        let i = Math.floor(Math.random()*instances.length)
+        var i = Math.floor(Math.random()*instances.length)
         if (! blacklist[instances[i]] || tries > 100)
             instance = i;
     }
@@ -317,8 +322,8 @@ function launchTagGrabber(searchterm) {
             var scores = buildScore(cachedTags[searchterm])
             /*
                 var count = 0
-                for (let d in cachedTags[searchterm]) {
-                    for (let j in cachedTags[searchterm][d]){
+                for (var d in cachedTags[searchterm]) {
+                    for (var j in cachedTags[searchterm][d]){
                         count++
                         console.log(j)
                     }
@@ -334,7 +339,7 @@ function launchTagGrabber(searchterm) {
                 for (i in scores) {
                     var fontsize = getFontSize(scores[i]['score']);
                     var lineheight = fontsize * 1.1
-                    html = html + '<span style="font-size: ' + getFontSize(scores[i]['score']) + 'vw; line-height: ' + lineheight + 'vw">' + `<a href="https://${scores[i].domain}/about/more">${scores[i].domain}</a>` + '</span>\n'
+                    html = html + '<span style="font-size: ' + getFontSize(scores[i]['score']) + 'vw; line-height: ' + lineheight + 'vw">' + '<a href="https://' + scores[i].domain +'/about/more">' +scores[i].domain +'</a></span>\n'
                     
                     // debug version
                     //html = html + '<span style="font-size: ' + getFontSize(scores[i]['score']) + 'vw; line-height: ' + lineheight + 'vw">' + `<a href="https://${scores[i].domain}/about/more">${scores[i].domain}</a> ${scores[i].count} ${scores[i].score} ` + '</span>\n'
@@ -342,14 +347,14 @@ function launchTagGrabber(searchterm) {
                 thediv.innerHTML = html
             }
             else {
-                thediv.innerHTML = `<h4>#${searchterm} not found in the fediverse (wha?) <a href="#" onclick="doSearch();">Search for #{searchterm} Again</a></h4>`;
+                thediv.innerHTML = '<h4>#' + searchterm + ' not found in the fediverse (wha?) <a href="#" onclick="doSearch();">Search for #'+ searchterm +' Again</a></h4>';
             }
         }
         else {
-            thediv.innerHTML = `<h4>#${searchterm} not found in the fediverse (wha?) <a href="#" onclick="doSearch();">Search for #${searchterm} Again</a></h4>`;
+            thediv.innerHTML = '<h4>#' + searchterm + ' not found in the fediverse (wha?) <a href="#" onclick="doSearch();">Search for #'+ searchterm +' Again</a></h4>';
         }
         thediv = document.getElementById("accordingto")
-        thediv.innerHTML = `<p class="footnote">according to <a href="https://${instances[instance]}">${instances[instance]}</a></p>`
+        thediv.innerHTML = '<p class="footnote">according to <a href="https://' + instances[instance] + '">' + instances[instance] +'</a></p>'
         
 
     })
@@ -396,7 +401,7 @@ function searchIt(e) {
 function randomSearch() {
     var box = document.getElementById("searchbox");
     if (box) {
-        let choice = taglist[Math.floor(Math.random()*taglist.length)]
+        var choice = taglist[Math.floor(Math.random()*taglist.length)]
         box.value = choice
         doSearch()
     }

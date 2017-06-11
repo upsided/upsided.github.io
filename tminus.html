@@ -94,8 +94,8 @@ ul.hours li {
 <script>
 
 function goCount(element) {
-    let now = Date.now()
-    let t = element.getAttribute('data-countdown')
+    var now = Date.now()
+    var t = element.getAttribute('data-countdown')
     url = "./tminus-countdown.html#" + (now + parseInt(t))
     window.location.href = url
 }

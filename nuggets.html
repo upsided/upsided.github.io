@@ -118,11 +118,17 @@ background-color: #282c37;
 }
 </style>
 
+<script src="./promitto.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js">
 </script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
 </script>
 <script>
+
+if (typeof(Promise) === "undefined") {
+    Promise = promitto.Promise
+}
+
 const instancesURL = "https://upsided.github.io/instances.json"
 function loadInstances(url){
     var request = new XMLHttpRequest();
@@ -286,7 +292,7 @@ function toggleFullscreen() {
 
 $(document).ready(function() {
   loadInstances(instancesURL)
-  .then(data => {
+  .then(function(data) {
       instances = data;
       doToots();
   });
