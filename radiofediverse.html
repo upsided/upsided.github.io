@@ -450,7 +450,9 @@ function musicWatcher(){
                 playStartTime = Date.now()
             }
             else if ( elapsed > 6*60*1000) { // skip long stuff automatically
+            //else if ( elapsed > 20*1000) { // debug
                 console.log("skipping long stuff...")
+                setTimeout(playNextVideo, 500)
 
             }
         }
@@ -964,7 +966,7 @@ p.errortext {
 </div>
 <div id="domainname"><p style="text-align: center">Loading...</p></div> 
 </div>
-<div id="audiolimits"><input id="skiplongaudio" type="checkbox" checked>Limit Audio to 6 minutes</input><br/> <input id="clearcache" type="button" value="Clear Cache" onclick="clearCache()"></input></div>
+<div id="audiolimits"><input id="skiplongaudio" type="checkbox" checked>Limit songs to 6 minutes</input><br/> <input id="clearcache" type="button" value="Clear Cache" onclick="clearCache()"></input></div>
 <div id="controlbar"><p style="text-align: right; "> <span style="cursor: pointer; display: none;" onclick="Recycle()">♲  </span><span id="skipbutton" style="cursor: pointer;" onclick="SkipIt()">☞</span></p></div>
 
 <div id="errorlog"></div>
