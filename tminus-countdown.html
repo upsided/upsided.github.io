@@ -242,7 +242,7 @@ function textTo(element) {
 function syncWarning(secs) {
     var warner = document.getElementById("syncwarning")
     if (warner) {
-        warner.innerHTML='<p>server time is out of sync by ' + secs +'s, using device clock</p>'
+        warner.innerHTML='<p>server time is out of sync by ' + secs +'s, check your device clock?</p>'
     }
 }
 var pageStorage = {}
@@ -274,10 +274,9 @@ window.onload = function () {
         console.log("gotten offset: ", offset)
         // so some mobile devices freak out telling time
         // --- just live with it if offset is too large
-        if (offset < 1000){
             timeOffset = offset;
-        }
-        else
+
+        if (offset > 2000)
         {
             syncWarning(offset/1000)
             // timeOffset = 0; // used saved value
