@@ -20,6 +20,7 @@ if (typeof(Promise) === "undefined") {
 
 /* DON'T READ THIS WITH WORDWRAP ON, OR ELSE YOU WILL COVFEFE */
 
+const SEARCH_TAGS = ["mastomusic", "pouetradio", "tootradio", "nowplaying", "np", "nowlistening", "music", "totd"]
 const MaxTootDownload = 1  // limit tag download to this many 40-toot pages. 
                            // I keep it at 1 until I'm confident that it won't bash the fediverse.
 var globalErrorCount = 0;
@@ -376,7 +377,7 @@ function launchTagGrabber() {
     var tries = 0
 
     var promesitas = []
-    var tags = ["mastomusic", "pouetradio", "tootradio", "nowplaying", "np", "nowlistening", "music"]
+    var tags = SEARCH_TAGS
     console.log("adding some music with tags")
     for (var t in tags) {
         var p = tagGrabber(pickDomain(), tags[t])
