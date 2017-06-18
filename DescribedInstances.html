@@ -147,9 +147,10 @@ div.toot-group {
 div.toot {
 }
 div.avvi-wall{
-max-width: 155px;
-float:left;
-
+    max-width: 155px;
+    float:left;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 div.toot-disclosure{
@@ -620,7 +621,7 @@ div.page-description {
    function refilter(){
     var sBox = document.getElementById("searchBox");
     var searchTerms = []
-    
+    console.log("refiltering")
     if (sBox == null) {console.log("NULL SEARCH BOX");}
     else {
       searchTerms = sBox.value.toLowerCase().split(" ")
@@ -649,7 +650,7 @@ div.page-description {
             }
           });
     }
-    //console.log("GREP FINISHED")
+    console.log("GREP FINISHED")
 
     var selectorBuild = "";
     $(".radio-entry *, #languageFilters *").not(":checked").each(
@@ -661,13 +662,14 @@ div.page-description {
                 }
             }
         );    
-    //console.log(selectorBuild)
 
     if (selectorBuild.length > 0) {
         $(selectorBuild.slice(2)).trigger("hide");
     }
     
-    
+ 
+    console.log(selectorBuild)
+   
     $("#filtercount").each (
         function (index) {            
             $(this).text( $('.instance-chunk:visible').length + " instances")
@@ -714,7 +716,7 @@ $(document).ready(function() {
    Upside's Instance Picker
   </h1>
   <h4>
-   Sat Jun 17 18:38:32 2017
+   Sat Jun 17 19:10:00 2017
   </h4>
   <div class="page-description">
    <p>
@@ -817,6 +819,48 @@ $(document).ready(function() {
      </span>
      <span class="radio-entry">
       <input id="activity-unknown" name="activity-radio" type="checkbox" value="activity-unknown"/>
+      unknown
+     </span>
+    </div>
+    <div id="usercount">
+     <h4 class="dialog-head">
+      Users
+     </h4>
+     <span class="radio-entry">
+      <input id="usercount-low" name="usercount-radio" type="checkbox" value="usercount-low"/>
+      low
+     </span>
+     <span class="radio-entry">
+      <input id="usercount-medium" name="usercount-radio" type="checkbox" value="usercount-medium"/>
+      medium
+     </span>
+     <span class="radio-entry">
+      <input id="usercount-high" name="usercount-radio" type="checkbox" value="usercount-high"/>
+      high
+     </span>
+     <span class="radio-entry">
+      <input id="usercount-unknown" name="usercount-radio" type="checkbox" value="usercount-unknown"/>
+      unknown
+     </span>
+    </div>
+    <div id="connectioncount">
+     <h4 class="dialog-head">
+      Connections
+     </h4>
+     <span class="radio-entry">
+      <input id="connectioncount-low" name="connectioncount-radio" type="checkbox" value="connectioncount-low"/>
+      low
+     </span>
+     <span class="radio-entry">
+      <input id="connectioncount-medium" name="connectioncount-radio" type="checkbox" value="connectioncount-medium"/>
+      medium
+     </span>
+     <span class="radio-entry">
+      <input id="connectioncount-high" name="connectioncount-radio" type="checkbox" value="connectioncount-high"/>
+      high
+     </span>
+     <span class="radio-entry">
+      <input id="connectioncount-unknown" name="connectioncount-radio" type="checkbox" value="connectioncount-unknown"/>
       unknown
      </span>
     </div>
