@@ -1024,7 +1024,7 @@ function playNextVideo () {
         next = pageStorage.playlist.shift()
     }
 
-    if (pageStorage.playlist.length > 0) {
+    if (next) {
         
         var domainDiv = document.getElementById("domainname")
         if (domainDiv != undefined) {
@@ -1045,8 +1045,10 @@ function playNextVideo () {
     }
     else { // try later
         if (ImDead) return;
-        launchTagGrabber() // FIXME: have to manage the hits here, could happen forevah!
-        setTimeout(playNextVideo, 5000);
+        launchTagGrabber(). // FIXME: have to manage the hits here, could happen forevah!
+        then (function () {
+          playNextVideo();
+        });
     }
 }
 
@@ -1112,6 +1114,7 @@ function SkipIt() {
     if (ImDead) return;
     launchTagGrabber()
     .then ( function() {
+        console.log("Skipping...")
         playNextVideo()
     });
     
