@@ -144,6 +144,7 @@ function promiseRequest(jsonData, url) {
 
         console.log("\n\ngetting " + url);
         request.open('GET', url);
+        request.timeout = 2000;
         request.onreadystatechange = function () {
             if (request.readyState == 4){
                 if (request.status == 200){
