@@ -532,7 +532,7 @@ function togglePause() {
         console.log("allArePaused: ", allArePaused);
         if (!allArePaused){
           // something's playing so we pause all
-          console.log("somethings playing, so pause");
+          //console.log("somethings playing, so pause");
           if (scWidg) {
             scWidg.pause();
           }
@@ -633,7 +633,7 @@ function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.ENDED) {
         console.log("PLAY ENDED")
         if (!refreshingVid){
-            console.log("Video is not reloading, so we play next...")    
+            //console.log("Video is not reloading, so we play next...")    
             setTimeout(playNextVideo, 500);
         }
         else {
@@ -682,7 +682,7 @@ function rebindSoundCloud() {
         widget       = SC.Widget(widgetIframe);
 
     widget.bind(SC.Widget.Events.LOAD_PROGRESS, function (percent) {
-        console.log("percent: ", percent)
+        //console.log("percent: ", percent)
         if (percent == 1)
             //widget.play()
             ;
@@ -745,7 +745,7 @@ function setupMouseover(elementName){
 }
 
 function setupGlow(elementName){
-  console.log(elementName);
+  //console.log(elementName);
   var element = faceplate.getElementById(elementName);
   var glow = faceplate.getElementById(elementName + "-glow")
 
@@ -853,9 +853,9 @@ function setupSVG(element, svgdoc) {
     // kindof works
     var c = getVolumeKnobCenter() ; //{x: bbox.x+bbox.width/2, y: bbox.y+bbox.height/2};
     displayPoint(c.x, c.y);
-    console.log("knob center: ", c)
-    console.log("click (svg): ", p)
-    console.log(evt)
+    //console.log("knob center: ", c)
+    //console.log("click (svg): ", p)
+    //console.log(evt)
     
     // dunno why this is sometimes necessary but other times not (!)
     //x = bbox.x + x;
