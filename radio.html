@@ -834,7 +834,12 @@ function setupSVG(element, svgdoc) {
     setupGlow(glowables[i]);
   }
 
-
+  var ft = faceplate.getElementById("fediverseText");
+  
+  ft.addEventListener("click", function () {
+    window.open("https://joinmastodon.org");
+  });
+  
   var v  = faceplate.getElementById("volumeKnobGlass");
 
   
