@@ -53,9 +53,9 @@ var blacklist = {"mastodon.host":true} // this is only one I see giving consiste
 // use instances with lots of connections as search targets.
 // Building a list on the fly like this almost guarantees a fail
 for (i in domainData) {
-    if (domainData[i]['connections'] > 1000) {
+    if (domainData[i]['connections'] > 600) {
         instances.push(i)
-        if (domainData[i]['connections'] > 1200)
+        if (domainData[i]['connections'] > 1000)
             instances.push(i) // bias! FOR SHAME
     }
 }
@@ -256,6 +256,7 @@ function addMusic(toot, tag) {
             d['songID'] = link['id']
             d['type'] = link['type']
             d['tag'] = tag
+            d['tags'] = toot['tags']
             d['created_at'] = toot['created_at']
             pageStorage.playlist.push(d)
         }
@@ -996,9 +997,29 @@ function playNextVideo () {
     var done = false;
 
     while(next && !done) {
-      if (USER_TAGS[next.tag])
+      // I added list .tags (plural), but it might not exist yet
+      // due to localStorage saving the playlist without it.
+      //console.log("next.tags: ", next.tags)
+      //console.log("next.tag: ", next.tag)
+      if (USER_TAGS[next.tag]){
         done = true;
-      else
+        //console.log("found tag ", next.tag);
+      }
+      else {
+        if (next.tags) {
+          for (var i in next.tags) {
+            if (USER_TAGS[next.tags[i].name])
+              { 
+                //console.log("found tag ", next.tags[i].name);
+                next.tag = next.tags[i]
+                done=true; 
+                break; 
+              }
+          }
+        }
+      }
+
+      if (!done)
         next = pageStorage.playlist.shift()
     }
 
