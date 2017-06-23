@@ -940,6 +940,10 @@ function setVolume(factor) {
   
   v.setAttribute("transform", "rotate(" + factor*270 + ", " + center.x + ", " + center.y + ")");
 
+  var v = faceplate.getElementById("volumeKnob-glow");
+  if (v)
+    v.setAttribute("transform", "rotate(" + factor*270 + ", " + center.x + ", " + center.y + ")");
+
   if (youtubePlayer)
     youtubePlayer.setVolume(factor*100);
 
