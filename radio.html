@@ -1033,7 +1033,7 @@ function playNextVideo () {
 
         // one link allowed per toot, and play that link once
         if (pageStorage.playedOnce[next.tootUrl] == undefined && pageStorage.playedOnceVid[next.songID] == undefined){
-            console.log("THIS WILL PLAY NEXT>>>", next.songUrl)
+            console.log("THIS WILL PLAY NEXT>>>", next.songUrl, next.created_at)
             pageStorage.playedOnce[next.tootUrl] = true;
             pageStorage.playedOnceVid[next.songID] = true;
             playVideo(next.songID, next.type);
@@ -1131,7 +1131,7 @@ function errorWatcher() {
     var elapsed =  Date.now() - errorT
     
     var rate = 1000*globalErrorCount/(elapsed)
-    console.log("#Errors per second: ", rate)
+    //console.log("#Errors per second: ", rate)
     
     if (rate > 3) {
         localStorage.clear()
@@ -1212,6 +1212,7 @@ window.onload = function () {
 
 <style>
 
+
 @font-face {
 	font-family: 'Bitstream Vera Sans';
 	src: url('/fonts/Vera.woff');
@@ -1240,7 +1241,7 @@ th {
 }
 
 a {
-    color: #8089a4;
+    color: #9e97b6;
     text-decoration: none;
 }
 a:hover {
@@ -1313,15 +1314,23 @@ p.footnote{
     text-align: right;
 }
 
+#taglist a:hover {
+ color: #9e97b6 ;
+}
+
 a.tagenabled {
     text-decoration: none;
     color: #423d52;
 }
 
+
+
 a.tagdisabled {
   text-decoration: line-through;
     color: #423d52;
 }
+
+
 
 #controlbar {
     margin-right: 10vw;
@@ -1401,7 +1410,6 @@ div.wrapper {
 p.errortext {
     font-size: 1vh;
 }
-
 
 
 </style>
