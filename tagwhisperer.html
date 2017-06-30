@@ -32,6 +32,8 @@ var taglist = ["04", "05", "1", "100selfieschallenge", "11t", "13reasonswhy", "1
 // if there's a network error, blacklist the domain (until page reload)
 var blacklist = {}
 
+// gnusocial, mastodon, or unknown
+var typeList = {}
 
 // BUILD INSTANCE LIST TO SEARCH
 // use instances with lots of connections as search targets.
@@ -128,6 +130,40 @@ function recursiveRequest(jsonList, url, countsDeep) {
     })
 }
 
+// since there's no reliable way to determine
+// the toot origin's type (gnusocial or mastodon),
+// just hit the network unabashedly to find out,
+// and store it in the global typeList
+function setType(theDomain) {
+  if (!theDomain) return;
+  
+  if (typeList[theDomain]) return;
+  
+  var request = new XMLHttpRequest();
+  var prom = new Promise(function(fulfill, reject) {
+    //var url = "https://" + theDomain + "/about/more";
+    var url = "https://" + theDomain + "/api/v1/timelines/public?limit=1"
+
+    //console.log("\n\npinging " + url);
+    request.open('HEAD', url);
+    request.timeout = 1000;
+    request.onreadystatechange = function () {
+        if (request.readyState == 4){
+            if (request.status == 200){
+                typeList[theDomain] = 'mastodon';
+                fulfill();
+            }
+            else { 
+              typeList[theDomain] = 'gnusocial';
+              fulfill();
+            }                    
+        }                
+    }
+    request.send();
+  });
+  
+  return prom;  
+}
 
 // uri tag is the url of the toot. The assumption is that the toot
 // will live on the same domain as the instance :shrug:
@@ -146,8 +182,8 @@ function extractDomain (uriTag) {
 }
 
 // add the uuid of the toot to the global cachedTags
-// directory. cachedTags looks like {'thetag': {'thedomain.social': {'uri': true}}}
-// the point of this business is because looking up uri by hash is faster than a list.
+// directory. cachedTags looks like {'thetag': {'thedomain.social': {'url': true}}}
+// the point of this business is because looking up url by hash is faster than a list.
 function addTag(tagname, url) {
     var d = extractDomain(url)
     var id = url
@@ -314,6 +350,14 @@ function launchTagGrabber(searchterm) {
     searchterm = conditionSearchterm(searchterm)
     tagGrabber(instances[instance], searchterm)
     .then(function() {
+      var promList = []
+      for (dom in cachedTags[searchterm]) {
+        //console.log("suppose the domain is ", dom)
+        promList.push(setType(dom))
+      }
+      return Promise.all(promList);
+    })
+    .then(function() {
         // global cachedTags is now filled properly
         // so use it.
         var thediv = document.getElementById("thebox")
@@ -339,7 +383,16 @@ function launchTagGrabber(searchterm) {
                 for (i in scores) {
                     var fontsize = getFontSize(scores[i]['score']);
                     var lineheight = fontsize * 1.1
-                    html = html + '<span style="font-size: ' + getFontSize(scores[i]['score']) + 'vw; line-height: ' + lineheight + 'vw">' + '<a href="https://' + scores[i].domain +'/about/more">' +scores[i].domain +'</a></span>\n'
+                    var dom = scores[i].domain
+                    
+                    html = html + '<span style="font-size: ' + getFontSize(scores[i]['score']) + 'vw; line-height: ' + lineheight + 'vw">' 
+                    if (!typeList[dom] || typeList[dom] == 'gnusocial') {
+                      // just point to main page
+                      html = html + '<a href="https://' + scores[i].domain +'">' +scores[i].domain +'</a></span>\n'
+                    }
+                    else {
+                      html = html + '<a href="https://' + scores[i].domain +'/about/more">' +scores[i].domain +'</a></span>\n'
+                    }
                     
                     // debug version
                     //html = html + '<span style="font-size: ' + getFontSize(scores[i]['score']) + 'vw; line-height: ' + lineheight + 'vw">' + `<a href="https://${scores[i].domain}/about/more">${scores[i].domain}</a> ${scores[i].count} ${scores[i].score} ` + '</span>\n'
