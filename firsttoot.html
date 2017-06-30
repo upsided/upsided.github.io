@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=yes" />
+
+<script src="./promitto.min.js"></script>
+<script>
+if (typeof(Promise) === "undefined") {
+    Promise = promitto.Promise
+}
+
+/* MIT license, enjoy. Please talk to @upside@octodon.social if you have comments! */
+
+/* so very sorry about the quality of the JavaScript. However, it's made with LOVE. So there.*/
+
+/* DON'T READ THIS WITH WORDWRAP ON, OR ELSE YOU WILL COVFEFE */
+
+const MaxTootDownload = 1  // limit tag download to this many 40-toot pages. 
+                           // I keep it at 1 until I'm confident that it won't bash the fediverse.
+
+var cachedTags = {} // holds all the tag data (see tagGrabber)
+
+var instances = [] // a list of instances to search, built below
+
+// convenience. If elementID does not exist, do nothing,
+// otherwise set its html
+function elementSet(elementID, html) {
+    var element = document.getElementById(elementID)
+    if (element != undefined) {
+        element.innerHTML = html;
+        return true;
+    }
+    return false;
+}
+
+
+
+// an XMLHttpRequest wrapped in a promise.
+// jsonData is the currently gathered json data,
+// url is the next json url to load. 
+
+function promiseRequest(jsonData, url) {
+    var request = new XMLHttpRequest();
+    var promise = new Promise( function (fulfill, reject) {
+        if (url == null) {
+            //console.log("URL is null")
+            fulfill([jsonData,null]);
+        }
+        
+        console.log("\n\ngetting " + url);
+        request.open('GET', url);
+        request.onreadystatechange = function () {
+            if (request.readyState == 4){
+                if (request.status == 200){
+                    var temp = JSON.parse(request.responseText);
+                    jsonData = jsonData.concat(temp)
+                    fulfill([jsonData, null]);
+                }
+                else {
+                    if (request.status != 0){
+                        reject(["NETWORK ERR", "Error: status: " + request.status + "\n" + request.responseText])
+                    }
+                    else {
+                        reject(["BROWSER ERR", "Error: see console log"]);
+                    }
+                        
+                }                    
+            }                
+        }
+        request.send();
+    });
+    return promise;
+}
+
+
+// do the magic of grabbing tagged toots existing publicly at instance 'domain'
+// returns a promise with result [jsonList, url]
+// containing a list of toots with that tag & the last url used
+// this is recursive because servers provide data page after page.
+function tagGrabber (domain, tag) {
+    var done = false
+    var jsonList = []
+    var url = "https://" + domain + "/api/v1/timelines/tag/" + tag;
+
+    return recursiveRequest(jsonList, url+"?limit=40", 1)
+    .then( function (result) { 
+        var tootlist = result[0];
+        for (var i in tootlist) {
+            if (! isBot(tootlist[i]))
+                addTag(tag, tootlist[i]['url'])
+        }
+    } )
+    .catch(function (err) {
+        // so the dumb part is that chrome et al will trigger an exception
+        // if it refuses to load a page for some reason (e.g. timeout,
+        // Access-Controll-Allow_Origin), but will not provide the reason.
+        // However, it send a generic status code of 0 in request.status,
+        // so that's nice (rolls eyes)
+
+        // Just log it, and blacklist the domain for this session.
+        console.log(err)
+        console.log( 'adding ' + domain + ' to blacklist due to network error')
+        blacklist[domain] = true;
+        elementSet('errorlog', '<p class="errortext">' +err[1]+ '</p>')
+        
+    })
+
+}
+
+function firstToot(domain) {
+  var jsonList = [];
+  promiseRequest(jsonList, "https://" + domain + "/api/v1/timelines/public?max_id=20&local=1")
+  .then (function (result) {
+    var tootlist = result[0];
+    var firstToot = tootlist.pop();
+    renderToot(firstToot, domain);
+  })
+  .catch(function (whateves) {
+  genericError();
+  });
+}
+
+// clean up the search term
+// (force it to be a proper hashtag)
+function conditionSearchterm(searchterm) {
+    var result = searchterm.toLowerCase();
+    var justword = /((\w|\d)+)/
+    var twowords;
+    
+    // no surrounding space
+    result = result.trim();
+
+    // no internal space
+    twowords = result.split(" ");
+    result = "";
+    for (var w in twowords) {
+        result = result + twowords[w]
+    }
+    
+    //console.log("Conditioned: ", searchterm, result)
+
+    return result
+}
+
+
+function launchFirstToot(searchterm) {
+    searchterm = conditionSearchterm(searchterm)
+    firstToot(searchterm);
+}
+
+function renderToot(tootJson, domain){
+    var thediv = document.getElementById("thebox")
+
+    if (tootJson) {
+      var html = ""
+      thediv.innerHTML = ""
+      
+
+      html += '<p style="text-align: center"><img src="' + tootJson.account.avatar + '"></img></p>'
+      html += '<h1> <a href="https://' + domain + '/@' + tootJson.account.acct + '" > @' + tootJson.account.acct + '</a></h1>'
+      html += tootJson.content
+      thediv.innerHTML = html
+  }
+  else {
+    
+    thediv.innerHTML = '<p style="text-align: center">Apologies, an error occured. Javascript GETs to this domain may be blocked. Try another?</p>'
+
+  }
+}
+
+function genericError() {
+    var thediv = document.getElementById("thebox")
+   
+    thediv.innerHTML  = '<p style="text-align: center">Apologies, an error occured. Javascript GETs to this domain may be blocked. Try another?</p>'
+}
+
+
+// get the value from the form searchbox
+// and search.
+function doSearch() {
+        var tb = document.getElementById("searchbox");
+        tb.focus() // dunno why, but I need it
+
+        // setting the content empty gives the user
+        // an indication that some work is happening.
+        // This is necessary because sometimes the same text
+        // appears in the box, and it looks like the page is just sitting there.
+        elementSet('thebox', "")
+        elementSet('errorlog', "")
+        elementSet('accordingto', "")
+        
+        launchFirstToot(tb.value);
+        return false;
+}
+
+// On enter key, do a search
+function searchIt(e) {
+    if (e.keyCode == 13) {
+        doSearch()
+        return false;
+    }
+}
+
+// user clicks the Game Die, so pick
+// a random tag and search.
+function randomSearch() {
+    var box = document.getElementById("searchbox");
+    if (box) {
+        var choice = taglist[Math.floor(Math.random()*taglist.length)]
+        box.value = choice
+        doSearch()
+    }
+}
+
+window.onload = function () {
+    var input = document.getElementById("searchbox").focus();
+    // instances = ['mastodon.host'] // debug
+}
+
+
+</script>
+
+
+<style>
+
+
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 2.6vh;
+    line-height: 3vh;
+    color: #aaa;
+    background-color: #282c37 ;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;
+}
+
+a {
+    color: #8089a4;
+    text-decoration: none;
+}
+a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+img { text-align: center; }
+a img {
+    border: none;
+}
+p {
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #ddd;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+    margin-bottom: 0px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+h1 {
+    text-align: center; 
+    padding-bottom: 0vw;
+    padding-top: 0px;
+    margin-top: 3vh;
+    font-size: 6vh;
+    line-height: 6.5vh;
+}
+h2 {
+    text-align: center; 
+    font-size: 5vw;
+    line-height: 6.5vw;
+    margin-top:1vw;
+    padding-bottom: 1vw;
+}
+
+html,body {
+background-color: #282c37;
+} 
+p.footnote{
+    font-size: 2vh;
+    text-align: right;
+}
+#controlbar, #randomtag {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    line-height: 2vw;
+}
+#everything {
+    background-color: #282c37;
+    width: 100%;
+    height: 100%;
+}
+#thebox {
+  background-color: grey;
+  width: 80vw;
+  height: auto;
+  padding: 2vw;
+  background-color: #21242b;
+  margin: 0 auto 0 auto;
+  border-radius: 12px;  
+  box-shadow: 0px 0px 100px -10px #888888;
+  overflow: hidden;
+
+}
+#domainname {
+}
+.spacer {
+    height: 3vh;
+}
+
+#searchbox {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    width: 61vw;
+    height: 11vh;
+    font-size: 5vh;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    padding-top: 1vh;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-style: solid;
+    border-color: #444;
+    color: #aaa;
+    overflow: visible;
+
+}
+#searchbox:focus {
+   outline-width: 0;
+}
+#accordingto {
+   width: 80vw;
+   margin: 0 auto;
+}
+
+div.wrapper {
+    width: 100vw;
+    margin-bottom: 3vh;
+    overflow: visible
+}
+p.errortext {
+    font-size: 1vh;
+}
+</style>
+<title>First Toot</title>
+</head>
+<body>
+<div id="everything">
+<div id="controlbar"></div>
+
+<div class="spacer"></div>
+<h1><a href="https://joinmastodon.org">First</a>Toot</h1>
+<div class="wrapper"><input id="searchbox" onkeypress="return searchIt(event)" type="text"></input></div>
+<div id="content">
+<div id="thebox"> <p style="text-align: center">Type an instance domain to see its first toot.</div>
+<div id="accordingto"></div>
+<div id="errorlog"></div>
+</body>

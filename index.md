@@ -6,7 +6,8 @@
 #### Fediverse Toys
 
 * [ The Tag Whisperer](./tagwhisperer.html), who says what?
-* [ Radio Fediverse](./radio.html), an infinite mix tape of loved tunes (buggy)
+* [ Radio Fediverse](./radio.html), an infinite mix tape of loved tunes
+* [ First Toot](./firsttoot.html), you tooted first!
 * [ Nuggets from The Fediverse](./nuggets.html), a continuous stream of *non sequiturs*.
 
 #### Misc
