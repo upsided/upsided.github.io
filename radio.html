@@ -71,7 +71,7 @@ function elementSet(elementID, html) {
     return false;
 }
 
-var pageStorage = {'playlist': [], 'playedOnceVid': {}, 'playedOnce': {}}
+var pageStorage = {'playlist': [], 'playedOnceVid': {}, 'playedOnce': {}, 'userTags': USER_TAGS}
 //localStorage.clear()
 function clearCache() {
     // keep the playlist?
@@ -87,6 +87,8 @@ function loadPageStorage(){
     pageStorage['playlist'] = []
     pageStorage['playedOnceVid'] = {}
     pageStorage['playedOnce'] = {}
+    pageStorage['userTags'] = USER_TAGS
+    pageStorage['timeLimit'] = true;
     if (typeof(Storage) !== "undefined") {
         // Code for localStorage/sessionStorage.
         if (localStorage['radiofediverse'] != undefined ) {
@@ -98,6 +100,20 @@ function loadPageStorage(){
             if (temp.playedOnce != undefined) {
                 pageStorage.playedOnce= temp.playedOnce
             }
+            if (temp.userTags !== undefined) {
+                pageStorage.userTags = temp.userTags;
+                USER_TAGS = pageStorage.userTags; //FIXME: tags could change!
+                setupTags();
+            }
+            if (temp.timeLimit !== undefined) {
+                pageStorage.timeLimit = temp.timeLimit;
+                if (pageStorage.timeLimit) {
+                  var e = document.getElementById('skiplongaudio')
+                  if (e) {
+                    e.checked = pageStorage.timeLimit;
+                  }
+                }
+            }
         }        
     }
 }
@@ -105,7 +121,12 @@ function loadPageStorage(){
 function savePageStorage() {
     if (typeof(Storage) !== "undefined") {
         //console.log("saving data...")
-        var temp = {'playlist': [], 'playedOnceVid': pageStorage.playedOnceVid, 'playedOnce': pageStorage.playedOnce};
+        var temp = {'playlist': [], 'playedOnceVid': pageStorage.playedOnceVid, 'playedOnce': pageStorage.playedOnce, 'userTags': pageStorage.userTags, 'timeLimit': true};
+        var e = document.getElementById('skiplongaudio')
+        if (e) {
+          temp.timeLimit = e.checked;
+        }
+
         localStorage['radiofediverse'] = JSON.stringify(temp)
     }
 }
