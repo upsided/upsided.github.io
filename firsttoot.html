@@ -117,7 +117,7 @@ function renderToot(tootJson, domain){
       html += '<p style="text-align: center"><img src="' + tootJson.account.avatar + '"></img></p>'
       html += '<h1> <a href="https://' + domain + '/@' + tootJson.account.acct + '" > @' + tootJson.account.acct + '</a></h1>'
       html += tootJson.content
-      html += '<p class="date">' + theDate.getMonth() + "/" + theDate.getDate() + "/" + theDate.getFullYear() + '</p>'
+      html += '<p class="date"><a href="' + tootJson.url + '" >' + theDate.getMonth() + "/" + theDate.getDate() + "/" + theDate.getFullYear() + '</a></p>'
       thediv.innerHTML = html
       window.location.hash = domain
   }
