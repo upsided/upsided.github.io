@@ -112,11 +112,14 @@ function renderToot(tootJson, domain){
       var html = ""
       thediv.innerHTML = ""
       
-
+      theDate = new Date(tootJson.created_at)
+      
       html += '<p style="text-align: center"><img src="' + tootJson.account.avatar + '"></img></p>'
       html += '<h1> <a href="https://' + domain + '/@' + tootJson.account.acct + '" > @' + tootJson.account.acct + '</a></h1>'
       html += tootJson.content
+      html += '<p class="date">' + theDate.getMonth() + "/" + theDate.getDate() + "/" + theDate.getFullYear() + '</p>'
       thediv.innerHTML = html
+      window.location.hash = domain
   }
   else {
     
@@ -170,8 +173,14 @@ function randomSearch() {
 }
 
 window.onload = function () {
-    var input = document.getElementById("searchbox").focus();
-    // instances = ['mastodon.host'] // debug
+    var input = document.getElementById("searchbox").focus();    
+    domain = window.location.hash.slice(1)
+    if (domain != undefined && domain.length > 3){
+      var box = document.getElementById("searchbox");
+      box.value = domain
+      doSearch()
+    }
+
 }
 
 
@@ -332,6 +341,10 @@ div.wrapper {
 }
 p.errortext {
     font-size: 1vh;
+}
+.date {
+  text-align: right;
+  font-size: smaller;
 }
 </style>
 <title>First Toot</title>
