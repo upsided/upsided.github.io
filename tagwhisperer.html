@@ -463,6 +463,11 @@ function randomSearch() {
 window.onload = function () {
     var input = document.getElementById("searchbox").focus();
     // instances = ['mastodon.host'] // debug
+    if (localStorage['netneutral'] == undefined || localStorage['netneutral'] < Date.now() - 1000*60){
+      localStorage['netneutral'] = Date.now();
+      window.location.href = "netneutral.html#tagwhisperer.html"
+      return;
+    }
 }
 
 

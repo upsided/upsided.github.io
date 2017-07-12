@@ -1218,7 +1218,12 @@ function causeErrors(rate){ // debugging thing, type it in console
 window.onload = function () {
     errorWatcher();
     setupTags();
-    loadPageStorage()
+    loadPageStorage();
+    if (localStorage['netneutral'] == undefined || localStorage['netneutral'] < Date.now() - 1000*60){
+      localStorage['netneutral'] = Date.now();
+      window.location.href = "netneutral.html#radio.html"
+      return;
+    }
     loadYouTubeAPI();
     musicGrabber();
     setTimeout(musicWatcher,4000);

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=yes" />
+<script src="./promitto.min.js"></script>
+<script>
+if (typeof(Promise) === "undefined") {
+    Promise = promitto.Promise
+}
+
+function moveOn() {
+  window.location.href = realLocation
+}
+
+var realLocation = ""
+window.onload = function() {
+  realLocation=window.location.hash.slice(1);
+  var con = document.getElementById("contacting");
+  con.innerHTML = "<em> Contacting your ISP for permission to redirect to '" + realLocation + "' in 15 seconds...";
+  setTimeout(moveOn, 15000);
+}
+</script>
+</head>
+<body>
+<h1>Your Internet Provider Has Ordained That I put a "Strong Delay" Before showing Content
+Because It Competes With Their Business Interests</h1>
+<div id="contacting">
+<em>Contacting your ISP for permission to Redirect in 15 seconds...</em>
+</div>
+
+<p>
+<a href="https://www.battleforthenet.com/july12/">PSST: It doesn't have to be this way</a>
+</p>
+
+</body>
+</html>
