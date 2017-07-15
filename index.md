@@ -1,7 +1,7 @@
 # Upside’s pages
 #### Mastodon Instances:
 
-* [ Instance Picker](./DescribedInstances.html), for searching Mastodon instances.
+* [ Instance Picker](./instances.html), for searching Mastodon instances.
 
 #### Fediverse Toys
 
