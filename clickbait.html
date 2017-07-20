@@ -913,7 +913,7 @@ var progressText = [
 "Making up stuff... agreeing with myself... posting to internet...",
 "The following might be a website, but NOT HOW YOU THINK...",
 "Secret Taser Weapon Operation Will Leave You STUNNED...",
-"Putting some old pork in this hot box... letting it fester through a sweltering summer... waiting... OH GOD THAT’S NASTY...",
+"Putting some old pork in a box... letting it fester through summer... waiting... OH GOD THAT’S NASTY...",
 "Skinless cat mates with a blobfish and a warthog—this could get ugly...",
 "I’m not the hater, YOU’RE the hater!",
 "JUST IN: Bieber",
@@ -939,16 +939,22 @@ function pickDomain() {
 function progress() {
   var i = Math.floor(Math.random()*progressText.length);
   var div = document.getElementById("thebox");
-  div.innerHTML = "<p>" + progressText[i] + "</p><h1><img src='giphy.gif' width=50 height=50></img></h1>";
+  var html = "<p>" + progressText[i] + "</p><h1><img src='giphy.gif' width=50 height=50></img></h1>";
+  i = Math.floor(Math.random()*1000000)
+  // well I wanted to put a silly "shares" with an obscenely high number count, but sigh,
+  // people are just TOO DUMB for that
+  div.innerHTML = html; // + "<p class='shares'>shares: " + i.toLocaleString() + "</p>";
 }
 
 window.onload = function() {
   progress();
   pickDomain();
+  console.log("rolling...");
   setTimeout(doLaunch, 2500);
 }
 
-
+// firefox bug. When returning in history, javascript is halted.
+window.onunload = function(){}; 
 
 </script>
 
@@ -1117,6 +1123,11 @@ p.errortext {
   font-size: 2vh;
 }
 
+#thebox > p.shares {
+  text-align: right;
+  font-size: 2vh;
+}
+
 </style>
 <title>Clickbait Central</title>
 </head>
@@ -1127,6 +1138,8 @@ p.errortext {
 <p></p>
 <div id="content">
 <div id="thebox"> <p style="text-align: center"></div>
+<div id="shares"></div>
+</div>
 <div id="aboutlink"><a href="./clickbait_about.html">about</a></div>
 <div id="errorlog"></div>
 </body>
